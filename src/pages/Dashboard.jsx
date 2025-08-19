@@ -116,37 +116,147 @@ function Dashboard() {
 
       {/* Visitantes Recentes */}
       <div className="card" style={{ padding: '16px' }}>
-        <h3 style={{ marginBottom: '14px', color: 'var(--jw-blue)', fontSize: '18px', fontWeight: '600' }}>
-          {t('visitantesRecentes')}
-        </h3>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+          <h3 style={{ color: 'var(--jw-blue)', fontSize: '18px', fontWeight: '600', margin: 0 }}>
+            Próximas Visitas
+          </h3>
+          <button 
+            onClick={() => window.location.href = '/oradores'}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: 'var(--jw-blue)',
+              fontSize: '14px',
+              fontWeight: '500',
+              cursor: 'pointer',
+              padding: '4px 8px'
+            }}
+          >
+            Ver todos →
+          </button>
+        </div>
+        
         {oradores.length === 0 ? (
-          <p style={{ textAlign: 'center', color: '#86868b', padding: '16px', fontSize: '15px' }}>
-            {t('noSpeakersYet')}
-          </p>
+          <div style={{ textAlign: 'center', padding: '20px' }}>
+            <div style={{ fontSize: '40px', marginBottom: '12px' }}>👥</div>
+            <p style={{ color: '#86868b', fontSize: '15px', margin: 0 }}>Nenhum orador cadastrado</p>
+            <button 
+              onClick={() => window.location.href = '/oradores'}
+              style={{
+                marginTop: '12px',
+                padding: '8px 16px',
+                background: 'var(--jw-blue)',
+                color: 'white',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '14px',
+                fontWeight: '500',
+                cursor: 'pointer'
+              }}
+            >
+              + Adicionar Orador
+            </button>
+          </div>
         ) : (
-          <div style={{ maxHeight: '140px', overflowY: 'auto' }}>
-            {oradores.filter(orador => orador.nextVisitDate && orador.nextVisitDate.trim() !== '').map(orador => (
-              <div key={orador.id} style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                padding: '10px 0',
-                borderBottom: '1px solid #f0f0f0',
-                minHeight: '50px'
-              }}>
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontWeight: '600', fontSize: '16px', color: '#1d1d1f', marginBottom: '2px' }}>
-                    {orador.nom}
+          <div>
+            {oradores.slice(0, 3).map(orador => {
+              const hasNextVisit = orador.nextVisitDate && orador.nextVisitDate.trim() !== ''
+              const hasAllergies = orador.allergies?.type
+              
+              return (
+                <div 
+                  key={orador.id} 
+                  onClick={() => handleOradorSelect(orador)}
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    padding: '12px',
+                    marginBottom: '8px',
+                    background: hasNextVisit ? '#f8f9ff' : '#ffffff',
+                    border: '1px solid #f0f0f0',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  <div style={{ flex: 1 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', marginBottom: '4px' }}>
+                      <span style={{ fontWeight: '600', fontSize: '16px', color: '#1d1d1f' }}>
+                        {orador.nom}
+                      </span>
+                      {hasAllergies && (
+                        <span style={{ 
+                          marginLeft: '8px', 
+                          fontSize: '12px',
+                          background: orador.allergies.type === 'grave' ? '#ff3b30' : '#ff9500',
+                          color: 'white',
+                          padding: '2px 6px',
+                          borderRadius: '4px',
+                          fontWeight: '500'
+                        }}>
+                          {orador.allergies.type === 'grave' ? '⚠️ GRAVE' : '⚠️ ALERGIA'}
+                        </span>
+                      )}
+                    </div>
+                    <div style={{ fontSize: '14px', color: '#86868b' }}>
+                      {orador.congregation}
+                    </div>
+                    {hasNextVisit && (
+                      <div style={{ fontSize: '12px', color: 'var(--jw-blue)', fontWeight: '500', marginTop: '2px' }}>
+                        📅 Próxima: {new Date(orador.nextVisitDate).toLocaleDateString('pt-BR')}
+                      </div>
+                    )}
                   </div>
-                  <div style={{ fontSize: '14px', color: '#86868b', fontWeight: '400' }}>
-                    {orador.congregation}
+                  
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                    {orador.phone && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          window.open(`https://wa.me/${orador.phone.replace(/\D/g, '')}`, '_blank')
+                        }}
+                        style={{
+                          background: '#25d366',
+                          color: 'white',
+                          border: 'none',
+                          borderRadius: '6px',
+                          padding: '6px 10px',
+                          fontSize: '12px',
+                          fontWeight: '500',
+                          cursor: 'pointer',
+                          marginBottom: '4px'
+                        }}
+                      >
+                        📱 WhatsApp
+                      </button>
+                    )}
+                    <span style={{ fontSize: '12px', color: '#86868b' }}>
+                      {orador.lastVisitDate ? `Última: ${orador.lastVisitDate}` : 'Primeira visita'}
+                    </span>
                   </div>
                 </div>
-                <div style={{ fontSize: '13px', color: '#86868b', fontWeight: '400', textAlign: 'right' }}>
-                  {orador.lastVisitDate || 'Sem visita'}
-                </div>
+              )
+            })}
+            
+            {oradores.length > 3 && (
+              <div style={{ textAlign: 'center', marginTop: '12px' }}>
+                <button 
+                  onClick={() => window.location.href = '/oradores'}
+                  style={{
+                    background: 'none',
+                    border: '1px solid #e5e5e7',
+                    color: '#86868b',
+                    padding: '8px 16px',
+                    borderRadius: '8px',
+                    fontSize: '14px',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Ver mais {oradores.length - 3} oradores
+                </button>
               </div>
-            ))}
+            )}
           </div>
         )}
       </div>
