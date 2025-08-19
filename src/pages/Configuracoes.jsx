@@ -69,12 +69,27 @@ function Configuracoes() {
   }
   
   const setupNotifications = async () => {
-    const hasPermission = await requestNotificationPermission()
-    if (hasPermission) {
-      scheduleAllReminders(oradores, hotes, attributions)
-      alert('Notificações configuradas com sucesso!')
-    } else {
-      alert('Permissão de notificação negada')
+    try {
+      const hasPermission = await requestNotificationPermission()
+      if (hasPermission) {
+        const confirmedAttributions = attributions.filter(a => a.statut === 'confirmé')
+        scheduleAllReminders(oradores, hotes, attributions)
+        
+        // Mostrar notificação de teste
+        if ('Notification' in window) {
+          new Notification('🔔 Notificações Ativadas!', {
+            body: `${confirmedAttributions.length} lembretes programados para visitas confirmadas`,
+            icon: '/pwa-192x192.png'
+          })
+        }
+        
+        alert(`✅ Notificações configuradas!\n\n📅 ${confirmedAttributions.length} lembretes programados\n🔔 Você receberá avisos 7 dias, 2 dias e no dia da visita\n⚠️ Alertas automáticos para alergias graves`)
+      } else {
+        alert('❌ Permissão de notificação negada.\n\nPara ativar:\n1. Clique no ícone 🔒 na barra de endereço\n2. Ative "Notificações"\n3. Tente novamente')
+      }
+    } catch (error) {
+      console.error('Erro ao configurar notificações:', error)
+      alert('❌ Erro ao configurar notificações. Verifique se o navegador suporta esta funcionalidade.')
     }
   }
 
