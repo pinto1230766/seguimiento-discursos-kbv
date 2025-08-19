@@ -1,0 +1,56 @@
+{
+  "name": "Seguimiento Discursos KBV",
+  "short_name": "Discursos KBV",
+  "description": "Gestão de visitas de oradores capverdianos - Testemunhas de Jeová",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4a6fa5",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "pt",
+  "categories": ["productivity", "utilities"],
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Dashboard",
+      "short_name": "Dashboard",
+      "description": "Ver métricas e próximas visitas",
+      "url": "/",
+      "icons": [{ "src": "/pwa-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Oradores",
+      "short_name": "Oradores",
+      "description": "Gerenciar oradores visitantes",
+      "url": "/oradores",
+      "icons": [{ "src": "/pwa-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Anfitriões",
+      "short_name": "Anfitriões",
+      "description": "Gerenciar anfitriões locais",
+      "url": "/hotes",
+      "icons": [{ "src": "/pwa-192x192.png", "sizes": "192x192" }]
+    }
+  ]
+}
