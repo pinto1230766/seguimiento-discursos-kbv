@@ -36,11 +36,11 @@ function Header() {
           JW
         </div>
         <div>
-          <h1 style={{ fontSize: '18px', fontWeight: '600', margin: 0 }}>
-            {t('appTitle')}
+          <h1 style={{ fontSize: '16px', fontWeight: '700', margin: 0, lineHeight: '1.2', color: 'white' }}>
+            GESTÃO DOS DISCURSOS DO GRUPO KBV DE LYON
           </h1>
-          <p style={{ fontSize: '12px', opacity: 0.9, margin: 0 }}>
-            {t('copyright')} {new Date().getFullYear()}
+          <p style={{ fontSize: '11px', opacity: 0.8, margin: 0, fontWeight: '400', color: 'white' }}>
+            Copyright Pinto Francisco {new Date().getFullYear()}
           </p>
         </div>
       </div>

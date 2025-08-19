@@ -81,9 +81,6 @@ function Dashboard() {
 
   return (
     <div className="container fade-in">
-      <h2 style={{ marginBottom: '20px', color: 'var(--jw-blue)' }}>
-        {t('dashboard')}
-      </h2>
 
       {/* Métriques principales */}
       <div className="metrics-grid" style={{
