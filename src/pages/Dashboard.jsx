@@ -115,32 +115,35 @@ function Dashboard() {
       </div>
 
       {/* Visitantes Recentes */}
-      <div className="card">
-        <h3 style={{ marginBottom: '12px', color: 'var(--jw-blue)', fontSize: '16px' }}>
+      <div className="card" style={{ padding: '16px' }}>
+        <h3 style={{ marginBottom: '14px', color: 'var(--jw-blue)', fontSize: '18px', fontWeight: '600' }}>
           {t('visitantesRecentes')}
         </h3>
         {oradores.length === 0 ? (
-          <p style={{ textAlign: 'center', color: '#666', padding: '12px' }}>
+          <p style={{ textAlign: 'center', color: '#86868b', padding: '16px', fontSize: '15px' }}>
             {t('noSpeakersYet')}
           </p>
         ) : (
-          <div style={{ maxHeight: '120px', overflowY: 'auto' }}>
+          <div style={{ maxHeight: '140px', overflowY: 'auto' }}>
             {oradores.filter(orador => orador.nextVisitDate && orador.nextVisitDate.trim() !== '').map(orador => (
               <div key={orador.id} style={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                padding: '6px 0',
-                borderBottom: '1px solid #eee'
+                padding: '10px 0',
+                borderBottom: '1px solid #f0f0f0',
+                minHeight: '50px'
               }}>
-                <div>
-                  <div style={{ fontWeight: '500', fontSize: '13px' }}>{orador.nom}</div>
-                  <div style={{ fontSize: '11px', color: '#666' }}>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontWeight: '600', fontSize: '16px', color: '#1d1d1f', marginBottom: '2px' }}>
+                    {orador.nom}
+                  </div>
+                  <div style={{ fontSize: '14px', color: '#86868b', fontWeight: '400' }}>
                     {orador.congregation}
                   </div>
                 </div>
-                <div style={{ fontSize: '10px', color: '#666' }}>
-                  {orador.lastVisitDate || t('noVisit')}
+                <div style={{ fontSize: '13px', color: '#86868b', fontWeight: '400', textAlign: 'right' }}>
+                  {orador.lastVisitDate || 'Sem visita'}
                 </div>
               </div>
             ))}
