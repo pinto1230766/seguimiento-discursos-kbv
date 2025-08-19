@@ -40,7 +40,7 @@ function Header() {
             {t('appTitle')}
           </h1>
           <p style={{ fontSize: '12px', opacity: 0.9, margin: 0 }}>
-            Copyright Pinto Francisco
+            {t('copyright')} {new Date().getFullYear()}
           </p>
         </div>
       </div>
@@ -48,12 +48,16 @@ function Header() {
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
         {!isOnline && (
           <div style={{
-            background: 'rgba(255,255,255,0.2)',
+            background: 'rgba(0,0,0,0.2)',
             padding: '4px 8px',
             borderRadius: '12px',
-            fontSize: '12px'
+            fontSize: '12px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px'
           }}>
-            📱 Offline
+            <div style={{ width: '8px', height: '8px', background: '#ff6b6b', borderRadius: '50%' }} />
+            {t('offline')}
           </div>
         )}
       </div>

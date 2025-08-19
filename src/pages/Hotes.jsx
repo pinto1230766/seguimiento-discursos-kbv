@@ -71,14 +71,14 @@ function Hotes() {
             ←
           </button>
           <h2 style={{ color: 'var(--jw-blue)', margin: 0 }}>
-            {editingHote ? t('editar') : t('adicionar')} Anfitrião
+            {editingHote ? t('editar') : t('adicionar')} {t('anfitriao')}
           </h2>
         </div>
 
         <form onSubmit={handleSubmit} className="card">
           <div style={{ marginBottom: '16px' }}>
             <label style={{ display: 'block', marginBottom: '4px', fontWeight: '500' }}>
-              Nome do Anfitrião *
+              {t('nomeAnfitriao')} *
             </label>
             <input
               type="text"
@@ -116,12 +116,12 @@ function Hotes() {
 
           <div style={{ marginBottom: '16px' }}>
             <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>
-              Capacidades
+              {t('capacidades')}
             </label>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
               <div>
                 <label style={{ display: 'block', marginBottom: '4px', fontSize: '14px' }}>
-                  Hospedagem (pessoas)
+                  {t('hospedagem')}
                 </label>
                 <input
                   type="number"
@@ -143,7 +143,7 @@ function Hotes() {
               </div>
               <div>
                 <label style={{ display: 'block', marginBottom: '4px', fontSize: '14px' }}>
-                  Refeições (couverts)
+                  {t('refeicoes')}
                 </label>
                 <input
                   type="number"
@@ -173,16 +173,16 @@ function Hotes() {
                   capacites: {...formData.capacites, transport: e.target.checked}
                 })}
               />
-              Pode fornecer transporte
+              {t('podeFornecerTransporte')}
             </label>
           </div>
 
           <div style={{ marginBottom: '16px' }}>
             <label style={{ display: 'block', marginBottom: '4px', fontWeight: '500' }}>
-              Restrições/Preferências
+              {t('restricoesPreferencias')}
             </label>
             <textarea
-              placeholder="Ex: Sem animais, sem crianças pequenas, alergias a evitar..."
+              placeholder={t('exemploRestricoes')}
               value={formData.contraintes.autres}
               onChange={(e) => setFormData({
                 ...formData,
@@ -216,13 +216,13 @@ function Hotes() {
     <div className="container fade-in">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
         <h2 style={{ color: 'var(--jw-blue)', margin: 0 }}>
-          Anfitriões ({hotes.length})
+          {t('anfitrioes')} ({hotes.length})
         </h2>
         <button 
           onClick={() => setShowForm(true)}
           className="btn btn-primary"
         >
-          ➕ {t('adicionar')}
+          ➕ {t('adicionarAnfitriao')}
         </button>
       </div>
 
@@ -230,10 +230,10 @@ function Hotes() {
         <div className="card" style={{ textAlign: 'center', padding: '40px' }}>
           <div style={{ fontSize: '48px', marginBottom: '16px' }}>🏠</div>
           <p style={{ color: '#666', marginBottom: '20px' }}>
-            Nenhum anfitrião cadastrado ainda
+            {t('nenhumAnfitriaoCadastrado')}
           </p>
           <button onClick={() => setShowForm(true)} className="btn btn-primary">
-            ➕ Adicionar primeiro anfitrião
+            ➕ {t('adicionarPrimeiroAnfitriao')}
           </button>
         </div>
       ) : (
@@ -251,14 +251,14 @@ function Hotes() {
                   
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '12px' }}>
                     <span style={{ background: '#e3f2fd', color: '#1976d2', padding: '4px 8px', borderRadius: '12px', fontSize: '12px' }}>
-                      🏠 {hote.capacites.hebergement} pessoa(s)
+                      🏠 {hote.capacites.hebergement} {hote.capacites.hebergement === 1 ? t('pessoa') : t('pessoas')}
                     </span>
                     <span style={{ background: '#e8f5e8', color: '#388e3c', padding: '4px 8px', borderRadius: '12px', fontSize: '12px' }}>
-                      🍽️ {hote.capacites.repas} couvert(s)
+                      🍽️ {hote.capacites.repas} {hote.capacites.repas === 1 ? t('couvert') : t('couverts')}
                     </span>
                     {hote.capacites.transport && (
                       <span style={{ background: '#fff3e0', color: '#f57c00', padding: '4px 8px', borderRadius: '12px', fontSize: '12px' }}>
-                        🚗 Transporte
+                        {t('transporte')}
                       </span>
                     )}
                   </div>
@@ -286,7 +286,7 @@ function Hotes() {
                   </button>
                   <button 
                     onClick={() => {
-                      if (confirm('Excluir este anfitrião?')) {
+                      if (confirm(t('excluirAnfitriao'))) {
                         deleteHote(hote.id)
                       }
                     }}

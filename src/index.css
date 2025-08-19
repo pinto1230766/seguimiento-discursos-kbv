@@ -72,41 +72,66 @@ body {
   }
 }
 
-/* Variables CSS pour thème JW.org */
+/* Variables CSS pour thème JW.Library officiel */
 :root {
-  --jw-blue: #1f4e79;
-  --jw-blue-light: #4a90e2;
-  --jw-blue-dark: #0f2a44;
-  --jw-gold: #d4af37;
-  --success: #28a745;
-  --warning: #ffc107;
-  --danger: #dc3545;
-  --light: #f8f9fa;
-  --dark: #343a40;
+  --jw-blue: #4a6fa5;
+  --jw-blue-light: #6b8bc3;
+  --jw-blue-dark: #2c5282;
+  --jw-gold: #b8860b;
+  --success: #38a169;
+  --warning: #d69e2e;
+  --danger: #e53e3e;
+  --light: #f7fafc;
+  --dark: #2d3748;
+  
+  /* Mode sombre JW */
+  --jw-dark-bg: #1a202c;
+  --jw-dark-surface: #2d3748;
+  --jw-dark-text: #e2e8f0;
+  --jw-dark-border: #4a5568;
 }
 
 /* Mode sombre automatique */
 @media (prefers-color-scheme: dark) {
   body:not([data-theme="light"]) {
-    background-color: #1a1a1a;
-    color: #e0e0e0;
+    background-color: var(--jw-dark-bg) !important;
+    color: var(--jw-dark-text) !important;
   }
   
   :root:not([data-theme="light"]) {
-    --light: #2d2d2d;
-    --dark: #e0e0e0;
+    --light: var(--jw-dark-surface);
+    --dark: var(--jw-dark-text);
   }
 }
 
-/* Mode sombre manuel */
+/* Mode sombre manuel - Correction zones noires */
 [data-theme="dark"] {
-  background-color: #1a1a1a;
-  color: #e0e0e0;
+  background-color: var(--jw-dark-bg) !important;
+  color: var(--jw-dark-text) !important;
 }
 
 [data-theme="dark"] {
-  --light: #2d2d2d;
-  --dark: #e0e0e0;
+  --light: var(--jw-dark-surface);
+  --dark: var(--jw-dark-text);
+}
+
+[data-theme="dark"] .card {
+  background: var(--jw-dark-surface) !important;
+  color: var(--jw-dark-text) !important;
+  border-color: var(--jw-dark-border) !important;
+}
+
+[data-theme="dark"] input, 
+[data-theme="dark"] textarea, 
+[data-theme="dark"] select {
+  background: var(--jw-dark-surface) !important;
+  color: var(--jw-dark-text) !important;
+  border-color: var(--jw-dark-border) !important;
+}
+
+[data-theme="dark"] .nav-bottom {
+  background: var(--jw-dark-surface) !important;
+  border-top-color: var(--jw-dark-border) !important;
 }
 
 /* Mode clair manuel */

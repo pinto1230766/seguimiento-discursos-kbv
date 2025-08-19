@@ -122,7 +122,7 @@ function Dashboard() {
         </h3>
         {oradores.length === 0 ? (
           <p style={{ textAlign: 'center', color: '#666', padding: '12px' }}>
-            Nenhum orador cadastrado ainda
+            {t('noSpeakersYet')}
           </p>
         ) : (
           <div style={{ maxHeight: '120px', overflowY: 'auto' }}>
@@ -141,7 +141,7 @@ function Dashboard() {
                   </div>
                 </div>
                 <div style={{ fontSize: '10px', color: '#666' }}>
-                  {orador.lastVisitDate || 'Sem visita'}
+                  {orador.lastVisitDate || t('noVisit')}
                 </div>
               </div>
             ))}
@@ -155,14 +155,14 @@ function Dashboard() {
           {t('alertasImportantes')}
         </h3>
         <div style={{ textAlign: 'center', color: '#666', padding: '20px' }}>
-          Nenhum alerta no momento
+          {t('noAlerts')}
         </div>
       </div>
 
       {/* Calendário de Visitas */}
       <div className="card">
         <h3 style={{ marginBottom: '16px', color: 'var(--jw-blue)' }}>
-          📅 Calendário de Visitas
+          📅 {t('visitCalendar')}
         </h3>
         
         <DashboardCalendar 
@@ -176,7 +176,7 @@ function Dashboard() {
       {/* Atribuições e Compatibilidade */}
       <div className="card">
         <h3 style={{ marginBottom: '16px', color: 'var(--jw-blue)' }}>
-          Atribuições e Compatibilidade
+          {t('assignmentsAndCompatibility')}
         </h3>
         
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '16px', marginBottom: '16px' }}>
@@ -184,19 +184,19 @@ function Dashboard() {
             <div style={{ fontSize: '20px', fontWeight: 'bold', color: 'var(--success)' }}>
               {attributions.filter(a => a.statut === 'confirmé').length}
             </div>
-            <div style={{ fontSize: '12px', color: '#666' }}>Confirmadas</div>
+            <div style={{ fontSize: '12px', color: '#666' }}>{t('confirmed')}</div>
           </div>
           <div style={{ textAlign: 'center' }}>
             <div style={{ fontSize: '20px', fontWeight: 'bold', color: 'var(--warning)' }}>
               {attributions.filter(a => a.statut === 'proposé').length}
             </div>
-            <div style={{ fontSize: '12px', color: '#666' }}>Propostas</div>
+            <div style={{ fontSize: '12px', color: '#666' }}>{t('proposed')}</div>
           </div>
           <div style={{ textAlign: 'center' }}>
             <div style={{ fontSize: '20px', fontWeight: 'bold', color: 'var(--danger)' }}>
               {oradores.filter(o => !attributions.some(a => a.orateurId === o.id && a.statut !== 'annulé')).length}
             </div>
-            <div style={{ fontSize: '12px', color: '#666' }}>Sem Atribuição</div>
+            <div style={{ fontSize: '12px', color: '#666' }}>{t('unassigned')}</div>
           </div>
         </div>
         
@@ -205,7 +205,7 @@ function Dashboard() {
           className="btn btn-primary" 
           style={{ width: '100%' }}
         >
-          🔗 Gerenciar Atribuições
+          {t('manageAssignments')}
         </button>
       </div>
 

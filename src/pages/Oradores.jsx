@@ -260,13 +260,13 @@ function Oradores() {
                 marginBottom: '8px'
               }}
             >
-              <option value="">Sem alergias</option>
+              <option value="">{t('semAlergias')}</option>
               <option value="moderada">{t('moderada')}</option>
               <option value="grave">{t('grave')}</option>
             </select>
             {formData.allergies.type && (
               <textarea
-                placeholder="Detalhes das alergias..."
+                placeholder={t('detalhesAlergias')}
                 value={formData.allergies.details}
                 onChange={(e) => setFormData({
                   ...formData,
@@ -286,10 +286,10 @@ function Oradores() {
 
           <div style={{ marginBottom: '16px' }}>
             <label style={{ display: 'block', marginBottom: '4px', fontWeight: '500' }}>
-              Besoins Divers
+              {t('besoinsDivers')}
             </label>
             <textarea
-              placeholder="Autres besoins spécifiques (médicaments, équipements, etc.)..."
+              placeholder={t('outrosBesoins')}
               value={formData.besoinsDivers}
               onChange={(e) => setFormData({
                 ...formData,
@@ -336,7 +336,7 @@ function Oradores() {
       <div style={{ marginBottom: '20px' }}>
         <input
           type="text"
-          placeholder="Buscar por nome ou congregação..."
+          placeholder={t('buscarOrador')}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           style={{
@@ -353,11 +353,11 @@ function Oradores() {
         <div className="card" style={{ textAlign: 'center', padding: '40px' }}>
           <div style={{ fontSize: '48px', marginBottom: '16px' }}>👥</div>
           <p style={{ color: '#666', marginBottom: '20px' }}>
-            {searchTerm ? 'Nenhum orador encontrado' : 'Nenhum orador cadastrado ainda'}
+            {searchTerm ? t('nenhumOradorEncontrado') : t('nenhumOradorCadastrado')}
           </p>
           {!searchTerm && (
             <button onClick={() => setShowForm(true)} className="btn btn-primary">
-              ➕ Adicionar primeiro orador
+              ➕ {t('adicionarPrimeiroOrador')}
             </button>
           )}
         </div>
@@ -380,7 +380,7 @@ function Oradores() {
                   )}
                   {orador.nextVisitDate && (
                     <p style={{ margin: '0 0 8px 0', color: 'var(--jw-blue)' }}>
-                      📅 Próxima visita: {new Date(orador.nextVisitDate).toLocaleDateString('pt-BR')}
+                      {t('proximaVisita')}: {new Date(orador.nextVisitDate).toLocaleDateString('pt-BR')}
                     </p>
                   )}
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '12px' }}>
@@ -392,7 +392,7 @@ function Oradores() {
                       fontSize: '12px',
                       marginRight: '4px'
                     }}>
-                      {orador.type === 'local' ? '🏠 Local' : '✈️ Visitante'}
+                      {orador.type === 'local' ? t('local') : t('visitante')}
                     </span>
                     {orador.needs?.hebergement && (
                       <span style={{ background: '#e3f2fd', color: '#1976d2', padding: '4px 8px', borderRadius: '12px', fontSize: '12px' }}>
@@ -427,7 +427,7 @@ function Oradores() {
                         borderRadius: '12px', 
                         fontSize: '12px' 
                       }}>
-                        🚨 Alergia {orador.allergies.type}
+                        🚨 {t('alergia')} {t(orador.allergies.type)}
                       </span>
                     )}
                   </div>
@@ -441,7 +441,7 @@ function Oradores() {
                   </button>
                   <button 
                     onClick={() => {
-                      if (confirm('Excluir este orador?')) {
+                      if (confirm(t('excluirOrador'))) {
                         deleteOrador(orador.id)
                       }
                     }}

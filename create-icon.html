@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Générateur Icône KBV</title>
+</head>
+<body>
+    <canvas id="canvas" width="512" height="512"></canvas>
+    <br>
+    <button onclick="downloadIcon(192)">Télécharger 192x192</button>
+    <button onclick="downloadIcon(512)">Télécharger 512x512</button>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Couleurs JW.Library
+        const jwBlue = '#4a6fa5';
+        const jwGold = '#b8860b';
+        const white = '#ffffff';
+        
+        function drawIcon() {
+            // Fond bleu JW
+            ctx.fillStyle = jwBlue;
+            ctx.fillRect(0, 0, 512, 512);
+            
+            // Bordure dorée
+            ctx.strokeStyle = jwGold;
+            ctx.lineWidth = 8;
+            ctx.strokeRect(4, 4, 504, 504);
+            
+            // Texte KBV en haut
+            ctx.fillStyle = white;
+            ctx.font = 'bold 72px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('KBV', 256, 120);
+            
+            // Texte GV au centre
+            ctx.font = 'bold 120px Arial';
+            ctx.fillText('GV', 256, 280);
+            
+            // Texte PF en bas
+            ctx.font = 'bold 72px Arial';
+            ctx.fillText('PF', 256, 420);
+        }
+        
+        function downloadIcon(size) {
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = size;
+            tempCanvas.height = size;
+            const tempCtx = tempCanvas.getContext('2d');
+            
+            tempCtx.drawImage(canvas, 0, 0, size, size);
+            
+            const link = document.createElement('a');
+            link.download = `pwa-${size}x${size}.png`;
+            link.href = tempCanvas.toDataURL();
+            link.click();
+        }
+        
+        drawIcon();
+    </script>
+</body>
+</html>
