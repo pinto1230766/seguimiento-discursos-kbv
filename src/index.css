@@ -15,7 +15,7 @@ body {
   touch-action: manipulation;
   transition: background-color 0.3s ease, color 0.3s ease;
   /* Compensation navigation Samsung S25 Ultra */
-  padding-bottom: 20px;
+  padding-bottom: 40px;
   /* Optimisations Samsung */
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -250,6 +250,12 @@ button, .btn {
   .container {
     padding: 16px;
     max-width: 430px;
+    padding-bottom: 50px; /* Extra padding pour boutons virtuels */
+  }
+  
+  /* Navigation surélevée pour S25 Ultra */
+  .nav-bottom {
+    padding-bottom: 40px !important;
   }
   
   .card {
@@ -287,6 +293,12 @@ button, .btn {
 @media (min-width: 412px) and (max-width: 429px) {
   .container {
     padding: 18px;
+    padding-bottom: 45px; /* Extra padding pour boutons virtuels */
+  }
+  
+  /* Navigation surélevée pour S20 Ultra */
+  .nav-bottom {
+    padding-bottom: 35px !important;
   }
   
   .card {
@@ -357,7 +369,7 @@ button, .btn {
   display: flex;
   justify-content: space-around;
   padding: 16px 0 12px 0;
-  paddingBottom: max(12px, env(safe-area-inset-bottom));
+  paddingBottom: max(32px, env(safe-area-inset-bottom));
   z-index: 1000;
   transition: all 0.3s ease;
   /* Support pour écrans haute densité Samsung */
