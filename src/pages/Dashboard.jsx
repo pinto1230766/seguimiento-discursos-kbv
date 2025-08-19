@@ -283,7 +283,7 @@ function Dashboard() {
       </div>
 
       {/* Atribuições e Compatibilidade */}
-      <div className="card" style={{ padding: '14px' }}>
+      <div className="card" style={{ padding: '14px', marginBottom: 0 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
           <h3 style={{ color: 'var(--jw-blue)', fontSize: '16px', fontWeight: '600', margin: 0 }}>
             Atribuições
@@ -327,8 +327,6 @@ function Dashboard() {
         </div>
       </div>
 
-
-      
       {/* Modal Orador */}
       {showOradorModal && selectedOrador && (
         <OradorModal
