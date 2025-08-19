@@ -286,39 +286,48 @@ function Dashboard() {
       </div>
 
       {/* Atribuições e Compatibilidade */}
-      <div className="card">
-        <h3 style={{ marginBottom: '16px', color: 'var(--jw-blue)' }}>
-          {t('assignmentsAndCompatibility')}
-        </h3>
-        
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '16px', marginBottom: '16px' }}>
-          <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '20px', fontWeight: 'bold', color: 'var(--success)' }}>
-              {attributions.filter(a => a.statut === 'confirmé').length}
-            </div>
-            <div style={{ fontSize: '12px', color: '#666' }}>{t('confirmed')}</div>
-          </div>
-          <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '20px', fontWeight: 'bold', color: 'var(--warning)' }}>
-              {attributions.filter(a => a.statut === 'proposé').length}
-            </div>
-            <div style={{ fontSize: '12px', color: '#666' }}>{t('proposed')}</div>
-          </div>
-          <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '20px', fontWeight: 'bold', color: 'var(--danger)' }}>
-              {oradores.filter(o => !attributions.some(a => a.orateurId === o.id && a.statut !== 'annulé')).length}
-            </div>
-            <div style={{ fontSize: '12px', color: '#666' }}>{t('unassigned')}</div>
-          </div>
+      <div className="card" style={{ padding: '14px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+          <h3 style={{ color: 'var(--jw-blue)', fontSize: '16px', fontWeight: '600', margin: 0 }}>
+            Atribuições
+          </h3>
+          <button 
+            onClick={() => window.location.href = '/atribuicoes'}
+            style={{
+              background: 'var(--jw-blue)',
+              color: 'white',
+              border: 'none',
+              borderRadius: '6px',
+              padding: '6px 12px',
+              fontSize: '12px',
+              fontWeight: '500',
+              cursor: 'pointer'
+            }}
+          >
+            Gerenciar
+          </button>
         </div>
         
-        <button 
-          onClick={() => window.location.href = '/atribuicoes'}
-          className="btn btn-primary" 
-          style={{ width: '100%' }}
-        >
-          {t('manageAssignments')}
-        </button>
+        <div style={{ display: 'flex', justifyContent: 'space-around', gap: '8px' }}>
+          <div style={{ textAlign: 'center', flex: 1 }}>
+            <div style={{ fontSize: '18px', fontWeight: '600', color: '#34c759' }}>
+              {attributions.filter(a => a.statut === 'confirmé').length}
+            </div>
+            <div style={{ fontSize: '11px', color: '#86868b' }}>Confirmadas</div>
+          </div>
+          <div style={{ textAlign: 'center', flex: 1 }}>
+            <div style={{ fontSize: '18px', fontWeight: '600', color: '#ff9500' }}>
+              {attributions.filter(a => a.statut === 'proposé').length}
+            </div>
+            <div style={{ fontSize: '11px', color: '#86868b' }}>Propostas</div>
+          </div>
+          <div style={{ textAlign: 'center', flex: 1 }}>
+            <div style={{ fontSize: '18px', fontWeight: '600', color: '#ff3b30' }}>
+              {oradores.filter(o => !attributions.some(a => a.orateurId === o.id && a.statut !== 'annulé')).length}
+            </div>
+            <div style={{ fontSize: '11px', color: '#86868b' }}>Sem Atribuição</div>
+          </div>
+        </div>
       </div>
 
 
