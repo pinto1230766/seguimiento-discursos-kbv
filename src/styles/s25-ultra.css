@@ -1,0 +1,157 @@
+/* Optimisations spécifiques Samsung Galaxy S25 Ultra */
+/* Résolution: 1440x3088px, Viewport: 430x932dp */
+
+@media (min-width: 430px) and (max-width: 480px) and (-webkit-min-device-pixel-ratio: 3) {
+  
+  /* Variables spécifiques S25 Ultra */
+  :root {
+    --s25-padding: 14px;
+    --s25-border-radius: 16px;
+    --s25-font-size-small: 12px;
+    --s25-font-size-base: 15px;
+    --s25-font-size-large: 18px;
+    --s25-nav-height: 85px;
+    --s25-header-height: 70px;
+  }
+  
+  /* Container principal */
+  .container {
+    padding: var(--s25-padding) !important;
+    max-width: 430px !important;
+    padding-bottom: 70px !important;
+    padding-top: calc(var(--s25-header-height) + env(safe-area-inset-top)) !important;
+  }
+  
+  /* Header optimisé */
+  header {
+    height: var(--s25-header-height) !important;
+    padding: 10px var(--s25-padding) 6px var(--s25-padding) !important;
+  }
+  
+  header h1 {
+    font-size: 13px !important;
+    line-height: 1.1 !important;
+    max-width: 270px !important;
+    word-break: break-word !important;
+  }
+  
+  header p {
+    font-size: 9px !important;
+  }
+  
+  /* Navigation optimisée */
+  .nav-bottom {
+    padding: 10px 0 50px 0 !important;
+    min-height: var(--s25-nav-height) !important;
+  }
+  
+  .nav-item {
+    padding: 6px 3px 4px 3px !important;
+    font-size: 10px !important;
+    min-width: 65px !important;
+  }
+  
+  .nav-item span:first-child {
+    font-size: 26px !important;
+    margin-bottom: 1px !important;
+  }
+  
+  /* Cards optimisées */
+  .card {
+    padding: 12px !important;
+    margin: 5px 0 !important;
+    border-radius: var(--s25-border-radius) !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06) !important;
+  }
+  
+  .card h3 {
+    font-size: var(--s25-font-size-base) !important;
+    margin-bottom: 8px !important;
+  }
+  
+  /* Boutons optimisés */
+  button, .btn {
+    min-height: 50px !important;
+    padding: 12px 16px !important;
+    font-size: var(--s25-font-size-base) !important;
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+  }
+  
+  /* Inputs optimisés */
+  input, textarea, select {
+    font-size: 16px !important;
+    padding: 14px !important;
+    border-radius: 12px !important;
+    min-height: 50px !important;
+  }
+  
+  /* Textes optimisés */
+  h1 { font-size: 22px !important; font-weight: 700 !important; }
+  h2 { font-size: 20px !important; font-weight: 600 !important; }
+  h3 { font-size: var(--s25-font-size-large) !important; font-weight: 600 !important; }
+  
+  /* Labels optimisés */
+  label {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    padding: 6px 0 !important;
+  }
+  
+  /* Modales optimisées */
+  .modal-content {
+    margin: 8% 6px !important;
+    max-width: calc(100vw - 12px) !important;
+    border-radius: var(--s25-border-radius) !important;
+  }
+  
+  /* Tables optimisées */
+  th, td {
+    padding: 10px 6px !important;
+    font-size: 13px !important;
+  }
+  
+  /* Calendrier optimisé */
+  .calendar-container {
+    padding: 10px !important;
+  }
+  
+  .calendar-cell {
+    min-height: 48px !important;
+    font-size: var(--s25-font-size-small) !important;
+  }
+  
+  /* Métriques Dashboard */
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+}
+
+/* Optimisations pour le mode paysage S25 Ultra */
+@media (min-width: 430px) and (max-width: 480px) and (orientation: landscape) {
+  .container {
+    padding: 8px !important;
+    padding-top: calc(50px + env(safe-area-inset-top)) !important;
+    padding-bottom: 60px !important;
+  }
+  
+  header {
+    height: 50px !important;
+    padding: 6px 8px !important;
+  }
+  
+  header h1 {
+    font-size: 12px !important;
+  }
+  
+  .nav-bottom {
+    padding: 8px 0 40px 0 !important;
+    min-height: 70px !important;
+  }
+  
+  .card {
+    padding: 8px !important;
+    margin: 3px 0 !important;
+  }
+}

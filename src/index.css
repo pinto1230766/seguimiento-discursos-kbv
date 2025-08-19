@@ -245,47 +245,190 @@ button, .btn {
   padding-top: calc(80px + env(safe-area-inset-top));
 }
 
-/* Samsung Galaxy S25 Ultra (430x932dp, écran plus large) */
+/* Samsung Galaxy S25 Ultra (430x932dp, écran plus large) - Optimisation complète */
 @media (min-width: 430px) and (max-width: 480px) {
   .container {
-    padding: 16px;
+    padding: 14px;
     max-width: 430px;
-    padding-bottom: 50px; /* Extra padding pour boutons virtuels */
+    padding-bottom: 60px; /* Extra padding pour boutons virtuels */
+    padding-top: calc(70px + env(safe-area-inset-top));
   }
   
   /* Navigation surélevée pour S25 Ultra */
   .nav-bottom {
-    padding-bottom: 40px !important;
+    padding: 12px 0 45px 0 !important;
+    height: auto;
+    min-height: 85px;
   }
   
+  .nav-item {
+    padding: 8px 4px 6px 4px !important;
+    font-size: 11px !important;
+    min-width: 60px;
+  }
+  
+  .nav-item span:first-child {
+    font-size: 24px !important;
+    margin-bottom: 2px !important;
+  }
+  
+  /* Cards optimisées S25 Ultra */
   .card {
-    padding: 16px;
-    margin: 8px 0;
+    padding: 14px;
+    margin: 6px 0;
+    border-radius: 16px;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
   }
   
+  .card h3 {
+    font-size: 16px !important;
+    margin-bottom: 10px !important;
+  }
+  
+  /* Boutons optimisés S25 Ultra */
   button, .btn {
-    min-height: 48px;
-    padding: 12px 16px;
-    font-size: 15px;
+    min-height: 52px;
+    padding: 14px 18px;
+    font-size: 16px;
+    border-radius: 12px;
+    font-weight: 600;
+    word-wrap: break-word;
+    touch-action: manipulation;
+  }
+  
+  /* Textes optimisés pour S25 Ultra */
+  h1 { font-size: 24px; font-weight: 700; }
+  h2 { font-size: 22px; font-weight: 600; }
+  h3 { font-size: 18px; font-weight: 600; }
+  
+  /* Inputs optimisés S25 Ultra */
+  input, textarea, select {
+    font-size: 16px !important;
+    padding: 16px !important;
+    border-radius: 12px !important;
+    min-height: 52px;
+  }
+  
+  /* Labels optimisés */
+  label {
+    padding: 8px 0 !important;
+    font-size: 15px !important;
+    font-weight: 600;
+  }
+  
+  /* Métriques Dashboard S25 Ultra */
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+  
+  /* Calendrier S25 Ultra */
+  .calendar-container {
+    padding: 12px;
+  }
+  
+  .calendar-cell {
+    min-height: 50px;
+    font-size: 13px;
+  }
+  
+  /* Modales S25 Ultra */
+  .modal-content {
+    margin: 10% 8px;
+    max-width: calc(100vw - 16px);
+    border-radius: 16px;
+  }
+  
+  /* Tables S25 Ultra */
+  th, td {
+    padding: 12px 8px !important;
+    font-size: 14px !important;
+  }
+  
+  /* Listes S25 Ultra */
+  .list-item {
+    padding: 16px 14px;
+    margin: 6px 0;
+    border-radius: 12px;
+  }
+  
+  /* Formulaires S25 Ultra */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-row {
+    gap: 12px;
+  }
+  
+  /* Header S25 Ultra */
+  .header, header {
+    height: 70px;
+    padding: 12px 14px 8px 14px !important;
+  }
+  
+  .header h1, header h1 {
+    font-size: 14px !important;
+    line-height: 1.1 !important;
+    max-width: 280px;
     word-wrap: break-word;
   }
   
-  /* Textes plus petits pour éviter débordement */
-  h1 { font-size: 22px; }
-  h2 { font-size: 20px; }
-  h3 { font-size: 18px; }
+  .header p, header p {
+    font-size: 10px !important;
+  }
   
-  /* Options de langue/thème plus compactes */
-  label {
-    padding: 10px !important;
+  /* Logo JW plus petit */
+  .header div[style*="width: '40px'"], header div[style*="width: '40px'"] {
+    width: 35px !important;
+    height: 35px !important;
+    font-size: 16px !important;
+  }
+  
+  /* Statistiques compactes */
+  .stats-container {
+    padding: 12px;
+    gap: 8px;
+  }
+  
+  .stat-item {
+    padding: 12px;
+    border-radius: 12px;
+  }
+  
+  /* Alertes S25 Ultra */
+  .alert {
+    padding: 12px 14px;
+    border-radius: 12px;
     font-size: 14px;
   }
   
-  /* Statistiques adaptées */
-  .metrics-grid {
-    gap: 10px !important;
+  /* Badges S25 Ultra */
+  .badge {
+    padding: 4px 8px;
+    font-size: 12px;
+    border-radius: 8px;
+  }
+  
+  /* Tabs S25 Ultra */
+  .tab-button {
+    padding: 12px 16px;
+    font-size: 15px;
+    border-radius: 10px;
+  }
+  
+  /* Dropdown S25 Ultra */
+  .dropdown-menu {
+    border-radius: 12px;
+    padding: 8px;
+  }
+  
+  .dropdown-item {
+    padding: 12px 14px;
+    font-size: 15px;
+    border-radius: 8px;
   }
 }
 

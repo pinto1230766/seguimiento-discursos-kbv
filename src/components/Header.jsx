@@ -37,10 +37,24 @@ function Header() {
           JW
         </div>
         <div>
-          <h1 style={{ fontSize: '16px', fontWeight: '700', margin: 0, lineHeight: '1.2', color: 'white' }}>
+          <h1 style={{ 
+            fontSize: window.innerWidth <= 480 ? '14px' : '16px', 
+            fontWeight: '700', 
+            margin: 0, 
+            lineHeight: '1.2', 
+            color: 'white',
+            wordWrap: 'break-word',
+            maxWidth: window.innerWidth <= 480 ? '280px' : 'auto'
+          }}>
             GESTÃO DOS DISCURSOS DO GRUPO KBV DE LYON
           </h1>
-          <p style={{ fontSize: '11px', opacity: 0.8, margin: 0, fontWeight: '400', color: 'white' }}>
+          <p style={{ 
+            fontSize: window.innerWidth <= 480 ? '10px' : '11px', 
+            opacity: 0.8, 
+            margin: 0, 
+            fontWeight: '400', 
+            color: 'white' 
+          }}>
             Copyright Pinto Francisco {new Date().getFullYear()}
           </p>
         </div>
