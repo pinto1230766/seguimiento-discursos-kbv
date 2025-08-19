@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Créer Icône App Samsung</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f5f5f5; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; }
+        .icon-preview { display: flex; gap: 30px; margin: 20px 0; }
+        .icon-box { text-align: center; }
+        canvas { border: 3px solid #4a6fa5; border-radius: 15px; }
+        button { background: #4a6fa5; color: white; padding: 15px 25px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin: 10px; }
+        button:hover { background: #2c5282; }
+        .step { background: #e3f2fd; padding: 15px; margin: 10px 0; border-radius: 8px; border-left: 4px solid #4a6fa5; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Créer l'Icône pour ton Samsung S25 Ultra</h1>
+        
+        <div class="icon-preview">
+            <div class="icon-box">
+                <h3>192x192 (Écran d'accueil)</h3>
+                <canvas id="icon192" width="192" height="192"></canvas>
+                <br><button onclick="downloadIcon(192)">📱 Télécharger 192x192</button>
+            </div>
+            
+            <div class="icon-box">
+                <h3>512x512 (Splash screen)</h3>
+                <canvas id="icon512" width="512" height="512" style="max-width: 200px;"></canvas>
+                <br><button onclick="downloadIcon(512)">📱 Télécharger 512x512</button>
+            </div>
+        </div>
+        
+        <div class="step">
+            <h3>📋 Instructions pour ton Samsung S25 Ultra :</h3>
+            <ol>
+                <li><strong>Télécharge les 2 icônes</strong> avec les boutons ci-dessus</li>
+                <li><strong>Remplace les fichiers</strong> dans le dossier <code>/public/</code> :
+                    <ul>
+                        <li><code>pwa-192x192.png</code></li>
+                        <li><code>pwa-512x512.png</code></li>
+                    </ul>
+                </li>
+                <li><strong>Actualise l'app</strong> sur ton téléphone (F5)</li>
+                <li><strong>Menu → "Ajouter à l'écran d'accueil"</strong></li>
+                <li><strong>🎉 Ton icône apparaîtra sur l'écran d'accueil !</strong></li>
+            </ol>
+        </div>
+        
+        <button onclick="generateBoth()" style="background: #2e7d32; font-size: 18px;">🚀 Télécharger les 2 icônes</button>
+    </div>
+
+    <script>
+        function drawAppIcon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            const s = size / 512;
+            
+            // Effacer le canvas
+            ctx.clearRect(0, 0, size, size);
+            
+            // Fond dégradé bleu JW
+            const gradient = ctx.createLinearGradient(0, 0, 0, size);
+            gradient.addColorStop(0, '#6b8bc3');
+            gradient.addColorStop(1, '#4a6fa5');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+            
+            // Cercle de fond subtil
+            ctx.fillStyle = 'rgba(255,255,255,0.08)';
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size*0.45, 0, 2*Math.PI);
+            ctx.fill();
+            
+            // Microphone (centre haut) - Représente les orateurs
+            ctx.fillStyle = 'white';
+            ctx.shadowColor = 'rgba(0,0,0,0.4)';
+            ctx.shadowBlur = 6*s;
+            ctx.shadowOffsetY = 2*s;
+            
+            // Corps du microphone
+            ctx.beginPath();
+            ctx.roundRect((256-28)*s, (150-45)*s, 56*s, 90*s, 28*s);
+            ctx.fill();
+            
+            // Pied du microphone
+            ctx.fillRect((256-4)*s, (150+45)*s, 8*s, 70*s);
+            
+            // Base du microphone
+            ctx.beginPath();
+            ctx.ellipse(256*s, (150+125)*s, 40*s, 12*s, 0, 0, 2*Math.PI);
+            ctx.fill();
+            
+            // Ondes sonores
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = 4*s;
+            ctx.shadowBlur = 3*s;
+            ctx.beginPath();
+            ctx.arc(256*s, 150*s, 50*s, -0.5, 0.5);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(256*s, 150*s, 75*s, -0.7, 0.7);
+            ctx.stroke();
+            
+            ctx.shadowBlur = 0;
+            ctx.shadowOffsetY = 0;
+            
+            // Maison (bas gauche) - Représente les anfitriões
+            ctx.fillStyle = 'white';
+            ctx.shadowColor = 'rgba(0,0,0,0.3)';
+            ctx.shadowBlur = 4*s;
+            ctx.shadowOffsetY = 2*s;
+            
+            const hx = 150*s, hy = 370*s;
+            // Base de la maison
+            ctx.fillRect(hx-30*s, hy-20*s, 60*s, 50*s);
+            
+            // Toit de la maison
+            ctx.beginPath();
+            ctx.moveTo(hx-40*s, hy-20*s);
+            ctx.lineTo(hx, hy-50*s);
+            ctx.lineTo(hx+40*s, hy-20*s);
+            ctx.closePath();
+            ctx.fill();
+            
+            // Porte
+            ctx.fillStyle = '#2c5282';
+            ctx.fillRect(hx-10*s, hy+15*s, 20*s, 15*s);
+            
+            // Fenêtre
+            ctx.fillRect(hx+10*s, hy-5*s, 15*s, 15*s);
+            
+            ctx.shadowBlur = 0;
+            ctx.shadowOffsetY = 0;
+            
+            // Calendrier (bas droite) - Représente les visites
+            ctx.fillStyle = 'white';
+            ctx.shadowColor = 'rgba(0,0,0,0.3)';
+            ctx.shadowBlur = 4*s;
+            ctx.shadowOffsetY = 2*s;
+            
+            const cx = 362*s, cy = 370*s;
+            // Base du calendrier
+            ctx.beginPath();
+            ctx.roundRect(cx-30*s, cy-25*s, 60*s, 55*s, 5*s);
+            ctx.fill();
+            
+            // En-tête du calendrier
+            ctx.fillStyle = '#2c5282';
+            ctx.fillRect(cx-30*s, cy-25*s, 60*s, 15*s);
+            
+            // Anneaux du calendrier
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            ctx.arc(cx-15*s, cy-35*s, 4*s, 0, 2*Math.PI);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(cx+15*s, cy-35*s, 4*s, 0, 2*Math.PI);
+            ctx.fill();
+            
+            // Grille du calendrier
+            ctx.strokeStyle = '#2c5282';
+            ctx.lineWidth = 1.5*s;
+            // Lignes horizontales
+            for(let i = 1; i < 4; i++) {
+                ctx.beginPath();
+                ctx.moveTo(cx-25*s, (cy-10+i*10)*s);
+                ctx.lineTo(cx+25*s, (cy-10+i*10)*s);
+                ctx.stroke();
+            }
+            // Lignes verticales
+            for(let i = 1; i < 3; i++) {
+                ctx.beginPath();
+                ctx.moveTo((cx-25+i*17)*s, (cy-10)*s);
+                ctx.lineTo((cx-25+i*17)*s, (cy+30)*s);
+                ctx.stroke();
+            }
+            
+            ctx.shadowBlur = 0;
+            ctx.shadowOffsetY = 0;
+            
+            // Nom de l'application
+            ctx.fillStyle = 'white';
+            ctx.font = `bold ${28*s}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.shadowColor = 'rgba(0,0,0,0.6)';
+            ctx.shadowBlur = 3*s;
+            ctx.shadowOffsetY = 1*s;
+            ctx.fillText('DISCURSOS', 256*s, 450*s);
+            
+            ctx.font = `bold ${20*s}px Arial`;
+            ctx.fillText('KBV', 256*s, 475*s);
+        }
+        
+        function downloadIcon(size) {
+            const canvas = document.getElementById(`icon${size}`);
+            const link = document.createElement('a');
+            link.download = `pwa-${size}x${size}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            
+            console.log(`✅ Icône ${size}x${size} téléchargée !`);
+        }
+        
+        function generateBoth() {
+            downloadIcon(192);
+            setTimeout(() => downloadIcon(512), 500);
+            alert('🎉 Les 2 icônes ont été téléchargées !\\n\\n📱 Remplace maintenant les fichiers dans /public/ et actualise ton app sur le téléphone.');
+        }
+        
+        // Dessiner les icônes au chargement
+        window.onload = function() {
+            drawAppIcon(document.getElementById('icon192'), 192);
+            drawAppIcon(document.getElementById('icon512'), 512);
+        }
+    </script>
+</body>
+</html>
