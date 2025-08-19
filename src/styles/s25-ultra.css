@@ -131,10 +131,77 @@
     font-size: var(--s25-font-size-small) !important;
   }
   
-  /* Métriques Dashboard */
+  /* Dashboard spécifique S25 Ultra */
   .metrics-grid {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 10px !important;
+    gap: 8px !important;
+  }
+  
+  /* Cards Dashboard S25 Ultra */
+  .dashboard .card {
+    padding: 10px !important;
+    margin: 4px 0 !important;
+    border-radius: 12px !important;
+  }
+  
+  .dashboard .card h3 {
+    font-size: 14px !important;
+    margin-bottom: 6px !important;
+  }
+  
+  /* Próximas Visitas */
+  .dashboard .card div[style*="display: flex"] {
+    padding: 8px !important;
+    margin-bottom: 4px !important;
+  }
+  
+  .dashboard .card span[style*="fontSize: '16px'"] {
+    font-size: 14px !important;
+  }
+  
+  .dashboard .card span[style*="fontSize: '14px'"] {
+    font-size: 12px !important;
+  }
+  
+  .dashboard .card span[style*="fontSize: '12px'"] {
+    font-size: 10px !important;
+  }
+  
+  /* Botões Dashboard */
+  .dashboard button {
+    padding: 8px 12px !important;
+    font-size: 12px !important;
+    min-height: 40px !important;
+  }
+  
+  /* WhatsApp button */
+  .dashboard button[style*="borderRadius: '50%'"] {
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 10px !important;
+  }
+  
+  /* Atribuições section */
+  .dashboard .card:last-of-type {
+    padding: 10px !important;
+  }
+  
+  .dashboard .card:last-of-type h3 {
+    font-size: 14px !important;
+  }
+  
+  .dashboard .card:last-of-type button {
+    padding: 4px 8px !important;
+    font-size: 10px !important;
+    min-height: 32px !important;
+  }
+  
+  .dashboard .card:last-of-type div[style*="fontSize: '18px'"] {
+    font-size: 16px !important;
+  }
+  
+  .dashboard .card:last-of-type div[style*="fontSize: '11px'"] {
+    font-size: 9px !important;
   }
   
   /* Force tous les éléments inline */

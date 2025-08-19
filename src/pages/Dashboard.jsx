@@ -86,7 +86,7 @@ function Dashboard() {
   )
 
   return (
-    <div className="container fade-in">
+    <div className="container dashboard fade-in">
 
       {/* Métriques principales */}
       <div className="metrics-grid" style={{
