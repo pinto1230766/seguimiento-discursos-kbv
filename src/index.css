@@ -205,13 +205,17 @@ button, .btn {
   border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 18px;
-  margin: 12px 0;
+  margin: 8px 0;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
   /* Optimisation Samsung */
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   will-change: transform;
+}
+
+.card:last-child {
+  margin-bottom: 0;
 }
 
 .card h3 {
@@ -235,7 +239,7 @@ button, .btn {
 /* Layout mobile-first */
 .container {
   max-width: 100%;
-  padding: 16px;
+  padding: 16px 16px 0 16px;
   margin: 0 auto;
   /* Compensation pour header Samsung */
   padding-top: calc(80px + env(safe-area-inset-top));
