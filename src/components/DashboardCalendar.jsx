@@ -207,8 +207,8 @@ function DashboardCalendar({ oradores, eventos, onDateSelect, onOradorSelect }) 
                   style={{
                     fontSize: '10px',
                     padding: '2px 3px',
-                    background: orador.allergies?.type === 'grave' ? '#ff5722' : 
-                               orador.allergies?.type === 'moderee' ? '#ff9800' : '#4caf50',
+                    background: orador.allergies?.type === 'grave' ? '#ff3b30' : 
+                               orador.allergies?.type === 'moderee' ? '#ff9500' : '#34c759',
                     color: 'white',
                     borderRadius: '3px',
                     marginBottom: '2px',
@@ -230,25 +230,51 @@ function DashboardCalendar({ oradores, eventos, onDateSelect, onOradorSelect }) 
       {/* Légende */}
       <div style={{ 
         display: 'flex', 
+        flexWrap: 'wrap',
         justifyContent: 'center', 
-        gap: '16px', 
+        gap: '12px', 
         marginTop: '12px',
-        fontSize: '12px'
+        fontSize: '11px',
+        padding: '8px'
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-          <div style={{ width: '12px', height: '12px', background: 'var(--jw-blue)', borderRadius: '2px' }}></div>
+          <div style={{ 
+            width: '12px', 
+            height: '12px', 
+            background: 'var(--jw-blue)', 
+            borderRadius: '2px',
+            border: '1px solid rgba(0,0,0,0.1)'
+          }}></div>
           <span>Eventos</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-          <div style={{ width: '12px', height: '12px', background: '#4caf50', borderRadius: '2px' }}></div>
+          <div style={{ 
+            width: '12px', 
+            height: '12px', 
+            background: '#34c759', 
+            borderRadius: '2px',
+            border: '1px solid rgba(0,0,0,0.1)'
+          }}></div>
           <span>Visitas</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-          <div style={{ width: '12px', height: '12px', background: '#ff9800', borderRadius: '2px' }}></div>
+          <div style={{ 
+            width: '12px', 
+            height: '12px', 
+            background: '#ff9500', 
+            borderRadius: '2px',
+            border: '1px solid rgba(0,0,0,0.1)'
+          }}></div>
           <span>Alergia Moderada</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-          <div style={{ width: '12px', height: '12px', background: '#ff5722', borderRadius: '2px' }}></div>
+          <div style={{ 
+            width: '12px', 
+            height: '12px', 
+            background: '#ff3b30', 
+            borderRadius: '2px',
+            border: '1px solid rgba(0,0,0,0.1)'
+          }}></div>
           <span>Alergia Grave</span>
         </div>
       </div>
