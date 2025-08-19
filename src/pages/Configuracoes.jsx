@@ -140,16 +140,16 @@ function Configuracoes() {
 
   return (
     <div className="container fade-in">
-      <h2 style={{ marginBottom: '20px', color: 'var(--jw-blue)' }}>
+      <h2 style={{ marginBottom: '12px', color: 'var(--jw-blue)', fontSize: '20px' }}>
         {t('configuracoes')}
       </h2>
 
       {/* Idioma */}
-      <div className="card">
-        <h3 style={{ marginBottom: '16px', color: 'var(--jw-blue)' }}>
+      <div className="card" style={{ padding: '12px', margin: '6px 0' }}>
+        <h3 style={{ marginBottom: '10px', color: 'var(--jw-blue)', fontSize: '16px' }}>
           🌐 Idioma / Língua / Lingua
         </h3>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
           {[
             { code: 'pt', name: 'Português', flag: '🇵🇹' },
             { code: 'fr', name: 'Français', flag: '🇫🇷' },
@@ -159,7 +159,7 @@ function Configuracoes() {
               display: 'flex', 
               alignItems: 'center', 
               gap: '12px',
-              padding: '12px',
+              padding: '8px',
               border: currentLanguage === lang.code ? '2px solid var(--jw-blue)' : '1px solid #ddd',
               borderRadius: '8px',
               cursor: 'pointer'
@@ -179,11 +179,11 @@ function Configuracoes() {
       </div>
 
       {/* Tema */}
-      <div className="card">
-        <h3 style={{ marginBottom: '16px', color: 'var(--jw-blue)' }}>
+      <div className="card" style={{ padding: '12px', margin: '6px 0' }}>
+        <h3 style={{ marginBottom: '10px', color: 'var(--jw-blue)', fontSize: '16px' }}>
           🎨 Tema
         </h3>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
           {[
             { value: 'auto', name: 'Automático (sistema)', icon: '🔄' },
             { value: 'light', name: 'Claro', icon: '☀️' },
@@ -213,77 +213,77 @@ function Configuracoes() {
       </div>
 
       {/* Estatísticas */}
-      <div className="card">
-        <h3 style={{ marginBottom: '16px', color: 'var(--jw-blue)' }}>
+      <div className="card" style={{ padding: '12px', margin: '6px 0' }}>
+        <h3 style={{ marginBottom: '10px', color: 'var(--jw-blue)', fontSize: '16px' }}>
           📊 Estatísticas
         </h3>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '16px' }}>
-          <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '24px', fontWeight: 'bold', color: 'var(--jw-blue)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
+          <div style={{ textAlign: 'center', padding: '8px' }}>
+            <div style={{ fontSize: '20px', fontWeight: 'bold', color: 'var(--jw-blue)' }}>
               {oradores.length}
             </div>
-            <div style={{ fontSize: '14px', color: '#666' }}>Oradores</div>
+            <div style={{ fontSize: '12px', color: '#666' }}>Oradores</div>
           </div>
-          <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '24px', fontWeight: 'bold', color: 'var(--jw-blue)' }}>
+          <div style={{ textAlign: 'center', padding: '8px' }}>
+            <div style={{ fontSize: '20px', fontWeight: 'bold', color: 'var(--jw-blue)' }}>
               {hotes.length}
             </div>
-            <div style={{ fontSize: '14px', color: '#666' }}>Anfitriões</div>
+            <div style={{ fontSize: '12px', color: '#666' }}>Anfitriões</div>
           </div>
-          <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '24px', fontWeight: 'bold', color: 'var(--jw-blue)' }}>
+          <div style={{ textAlign: 'center', padding: '8px' }}>
+            <div style={{ fontSize: '20px', fontWeight: 'bold', color: 'var(--jw-blue)' }}>
               {attributions.length}
             </div>
-            <div style={{ fontSize: '14px', color: '#666' }}>Atribuições</div>
+            <div style={{ fontSize: '12px', color: '#666' }}>Atribuições</div>
           </div>
         </div>
       </div>
 
       {/* Backup e Sincronização */}
-      <div className="card">
-        <h3 style={{ marginBottom: '16px', color: 'var(--jw-blue)' }}>
+      <div className="card" style={{ padding: '12px', margin: '6px 0' }}>
+        <h3 style={{ marginBottom: '10px', color: 'var(--jw-blue)', fontSize: '16px' }}>
           💾 Backup e Dados
         </h3>
-        <div style={{ display: 'grid', gap: '12px' }}>
+        <div style={{ display: 'grid', gap: '8px' }}>
           <button 
             onClick={() => setShowExportModal(true)}
             className="btn btn-primary"
-            style={{ justifyContent: 'flex-start', gap: '12px' }}
+            style={{ justifyContent: 'flex-start', gap: '8px', padding: '10px 16px', fontSize: '14px' }}
           >
             📤 Exportar Dados
           </button>
           <button 
             onClick={() => setShowImportModal(true)}
             className="btn btn-secondary"
-            style={{ justifyContent: 'flex-start', gap: '12px' }}
+            style={{ justifyContent: 'flex-start', gap: '8px', padding: '10px 16px', fontSize: '14px' }}
           >
             📥 Importar Dados
           </button>
           <button 
             onClick={shareData}
             className="btn btn-secondary"
-            style={{ justifyContent: 'flex-start', gap: '12px' }}
+            style={{ justifyContent: 'flex-start', gap: '8px', padding: '10px 16px', fontSize: '14px' }}
           >
             📱 Compartilhar Backup
           </button>
           <button 
             onClick={exportCalendar}
             className="btn btn-secondary"
-            style={{ justifyContent: 'flex-start', gap: '12px' }}
+            style={{ justifyContent: 'flex-start', gap: '8px', padding: '10px 16px', fontSize: '14px' }}
           >
             📅 Exportar Calendário
           </button>
           <button 
             onClick={exportContacts}
             className="btn btn-secondary"
-            style={{ justifyContent: 'flex-start', gap: '12px' }}
+            style={{ justifyContent: 'flex-start', gap: '8px', padding: '10px 16px', fontSize: '14px' }}
           >
             👥 Exportar Contatos
           </button>
           <button 
             onClick={setupNotifications}
             className="btn btn-secondary"
-            style={{ justifyContent: 'flex-start', gap: '12px' }}
+            style={{ justifyContent: 'flex-start', gap: '8px', padding: '10px 16px', fontSize: '14px' }}
           >
             🔔 Configurar Notificações
           </button>
@@ -295,7 +295,7 @@ function Configuracoes() {
               }
             }}
             className="btn btn-secondary"
-            style={{ justifyContent: 'flex-start', gap: '12px', color: '#d32f2f' }}
+            style={{ justifyContent: 'flex-start', gap: '8px', padding: '10px 16px', fontSize: '14px', color: '#d32f2f' }}
           >
             🗑️ Limpar Todos os Dados
           </button>
@@ -303,15 +303,15 @@ function Configuracoes() {
       </div>
 
       {/* Sobre */}
-      <div className="card">
-        <h3 style={{ marginBottom: '16px', color: 'var(--jw-blue)' }}>
+      <div className="card" style={{ padding: '12px', margin: '6px 0' }}>
+        <h3 style={{ marginBottom: '10px', color: 'var(--jw-blue)', fontSize: '16px' }}>
           ℹ️ {t('sobre')}
         </h3>
         <div style={{ 
-          padding: '12px',
+          padding: '8px',
           background: '#f8f9fa',
-          borderRadius: '8px',
-          fontSize: '12px',
+          borderRadius: '6px',
+          fontSize: '11px',
           color: '#666',
           textAlign: 'center'
         }}>
