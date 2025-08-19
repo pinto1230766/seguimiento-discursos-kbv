@@ -57,24 +57,25 @@ function Dashboard() {
     }
   }, [addOrador, addHote, oradores.length])
 
-  const MetricCard = ({ title, value, icon, color = 'var(--jw-blue)' }) => (
+  const MetricCard = ({ title, value, icon, color = '#f8f9fa' }) => (
     <div className="card" style={{
-      background: color,
-      color: 'white',
+      background: '#ffffff',
+      color: '#1d1d1f',
       textAlign: 'center',
-      minHeight: '80px',
+      minHeight: '65px',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
-      padding: '12px 8px',
-      borderRadius: '8px',
-      boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+      padding: '10px 8px',
+      borderRadius: '12px',
+      border: '1px solid #e5e5e7',
+      boxShadow: '0 1px 3px rgba(0,0,0,0.05)'
     }}>
-      <div style={{ fontSize: '24px', marginBottom: '6px' }}>{icon}</div>
-      <div style={{ fontSize: '28px', fontWeight: 'bold', marginBottom: '4px', lineHeight: '1' }}>
+      <div style={{ fontSize: '18px', marginBottom: '3px', opacity: 0.7 }}>{icon}</div>
+      <div style={{ fontSize: '22px', fontWeight: '600', marginBottom: '2px', lineHeight: '1', color: '#1d1d1f' }}>
         {value}
       </div>
-      <div style={{ fontSize: '13px', opacity: 0.95, fontWeight: '500', lineHeight: '1.2' }}>{title}</div>
+      <div style={{ fontSize: '11px', opacity: 0.6, fontWeight: '400', lineHeight: '1.1', color: '#86868b' }}>{title}</div>
     </div>
   )
 
@@ -88,32 +89,28 @@ function Dashboard() {
       <div className="metrics-grid" style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(2, 1fr)',
-        gap: '12px',
-        marginBottom: '20px'
+        gap: '8px',
+        marginBottom: '16px'
       }}>
         <MetricCard
           title={t('visitantesAtuais')}
           value={metrics.visitantesAtuais || 0}
           icon="👥"
-          color="var(--jw-blue)"
         />
         <MetricCard
           title={t('necessidadesNaoCobertas')}
           value={metrics.necessidadesNaoCobertas || 0}
           icon="⚠️"
-          color="var(--warning)"
         />
         <MetricCard
           title={t('anfitriaoesDisponiveis')}
           value={metrics.anfitriaoesDisponiveis || 0}
           icon="🏠"
-          color="var(--success)"
         />
         <MetricCard
           title={t('alertasAlergia')}
           value={metrics.alertasAlergia || 0}
           icon="🚨"
-          color="var(--danger)"
         />
       </div>
 
