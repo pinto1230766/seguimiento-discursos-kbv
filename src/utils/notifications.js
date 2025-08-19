@@ -1,5 +1,15 @@
 // Utilitaires pour les notifications Android
 
+const isSecure = window.location.protocol === 'https:' || window.location.hostname === 'localhost';
+if (!isSecure) {
+  console.warn('L\'application devrait être servie en HTTPS pour une sécurité optimale');
+}
+
+const secureUrl = (url) => {
+  if (!url) return url;
+  return url.replace(/^http:\/\//i, 'https://');
+};
+
 export const requestNotificationPermission = async () => {
   if (!('Notification' in window)) {
     console.log('Ce navigateur ne supporte pas les notifications')

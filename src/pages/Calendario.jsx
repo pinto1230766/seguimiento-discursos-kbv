@@ -23,11 +23,11 @@ function Calendario() {
         if (fileType === 'oradores') {
           const importedOradores = await importFromFile(file, 'oradores')
           importedOradores.forEach(orador => addOrador(orador))
-          console.log(`Importados ${importedOradores.length} oradores de ${encodeURIComponent(file.name)}`)
+          console.log('Importados %d oradores de %s', importedOradores.length, file.name)
         } else if (fileType === 'programa') {
           const importedEventos = await importFromFile(file, 'programa')
           importedEventos.forEach(evento => addEvento(evento))
-          console.log(`Importados ${importedEventos.length} eventos de ${encodeURIComponent(file.name)}`)
+          console.log('Importados %d eventos de %s', importedEventos.length, file.name)
         }
       }
       
