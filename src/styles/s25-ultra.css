@@ -1,7 +1,7 @@
 /* Optimisations spécifiques Samsung Galaxy S25 Ultra */
 /* Résolution: 1440x3088px, Viewport: 430x932dp */
 
-@media (min-width: 430px) and (max-width: 480px) and (-webkit-min-device-pixel-ratio: 3) {
+@media (min-width: 430px) and (max-width: 480px) {
   
   /* Variables spécifiques S25 Ultra */
   :root {
@@ -18,8 +18,18 @@
   .container {
     padding: var(--s25-padding) !important;
     max-width: 430px !important;
-    padding-bottom: 70px !important;
+    padding-bottom: 80px !important;
     padding-top: calc(var(--s25-header-height) + env(safe-area-inset-top)) !important;
+    margin: 0 auto !important;
+  }
+  
+  /* Force tous les containers */
+  body .container,
+  #root .container,
+  div.container {
+    padding: 14px !important;
+    max-width: 430px !important;
+    padding-bottom: 80px !important;
   }
   
   /* Header optimisé */
@@ -125,6 +135,41 @@
   .metrics-grid {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 10px !important;
+  }
+  
+  /* Force tous les éléments inline */
+  * {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Force les styles sur tous les divs */
+  div[style] {
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+  
+  /* Navigation forcée */
+  nav.nav-bottom,
+  .nav-bottom {
+    padding: 10px 0 55px 0 !important;
+    min-height: 90px !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1000 !important;
+  }
+  
+  /* Header forcé */
+  header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 70px !important;
+    padding: 8px 14px !important;
+    z-index: 1000 !important;
   }
 }
 
