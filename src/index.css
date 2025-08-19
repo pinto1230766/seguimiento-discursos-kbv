@@ -318,8 +318,8 @@ button, .btn {
   border-top: 1px solid var(--border-color);
   display: flex;
   justify-content: space-around;
-  padding: 12px 0 8px 0;
-  paddingBottom: max(8px, env(safe-area-inset-bottom));
+  padding: 16px 0 12px 0;
+  paddingBottom: max(12px, env(safe-area-inset-bottom));
   z-index: 1000;
   transition: all 0.3s ease;
   /* Support pour écrans haute densité Samsung */
@@ -331,10 +331,10 @@ button, .btn {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 8px 6px 4px 6px;
+  padding: 16px 6px 8px 6px;
   text-decoration: none;
   color: var(--text-secondary);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
   min-width: 50px;
   transition: all 0.3s ease;
@@ -344,8 +344,8 @@ button, .btn {
 }
 
 .nav-item span:first-child {
-  font-size: 16px;
-  margin-bottom: 1px;
+  font-size: 20px;
+  margin-bottom: 4px;
 }
 
 /* Adaptation pour écrans Samsung haute résolution */

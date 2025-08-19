@@ -57,25 +57,31 @@ function Dashboard() {
     }
   }, [addOrador, addHote, oradores.length])
 
-  const MetricCard = ({ title, value, icon, color = '#f8f9fa' }) => (
-    <div className="card" style={{
-      background: '#ffffff',
-      color: '#1d1d1f',
-      textAlign: 'center',
-      minHeight: '70px',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      padding: '12px 8px',
-      borderRadius: '12px',
-      border: '1px solid #e5e5e7',
-      boxShadow: '0 1px 3px rgba(0,0,0,0.05)'
-    }}>
-      <div style={{ fontSize: '20px', marginBottom: '4px', opacity: 0.7 }}>{icon}</div>
-      <div style={{ fontSize: '26px', fontWeight: '600', marginBottom: '3px', lineHeight: '1', color: '#1d1d1f' }}>
+  const MetricCard = ({ title, value, icon, onClick }) => (
+    <div 
+      className="card" 
+      onClick={onClick}
+      style={{
+        background: '#ffffff',
+        color: '#1d1d1f',
+        textAlign: 'center',
+        height: '85px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        padding: '10px 8px',
+        borderRadius: '12px',
+        border: '1px solid #e5e5e7',
+        boxShadow: '0 2px 6px rgba(0,0,0,0.08)',
+        cursor: 'pointer',
+        transition: 'all 0.2s ease'
+      }}
+    >
+      <div style={{ fontSize: '18px', marginBottom: '4px' }}>{icon}</div>
+      <div style={{ fontSize: '22px', fontWeight: '700', marginBottom: '4px', lineHeight: '1', color: '#1d1d1f' }}>
         {value}
       </div>
-      <div style={{ fontSize: '13px', opacity: 0.6, fontWeight: '400', lineHeight: '1.2', color: '#86868b' }}>{title}</div>
+      <div style={{ fontSize: '10px', fontWeight: '500', lineHeight: '1.2', color: '#666', padding: '0 2px' }}>{title}</div>
     </div>
   )
 
@@ -90,24 +96,34 @@ function Dashboard() {
         marginBottom: '16px'
       }}>
         <MetricCard
-          title={t('visitantesAtuais')}
+          title="Visitantes Atuais"
           value={metrics.visitantesAtuais || 0}
           icon="👥"
+          onClick={() => window.location.href = '/oradores'}
         />
         <MetricCard
-          title={t('necessidadesNaoCobertas')}
+          title="Necessidades Não Cobertas"
           value={metrics.necessidadesNaoCobertas || 0}
           icon="⚠️"
+          onClick={() => window.location.href = '/atribuicoes'}
         />
         <MetricCard
-          title={t('anfitriaoesDisponiveis')}
+          title="Anfitriões Disponíveis"
           value={metrics.anfitriaoesDisponiveis || 0}
           icon="🏠"
+          onClick={() => window.location.href = '/hotes'}
         />
         <MetricCard
-          title={t('alertasAlergia')}
+          title="Alertas de Alergia"
           value={metrics.alertasAlergia || 0}
           icon="🚨"
+          onClick={() => {
+            const oradoresComAlergias = oradores.filter(o => o.allergies?.type)
+            if (oradoresComAlergias.length > 0) {
+              setSelectedOrador(oradoresComAlergias[0])
+              setShowOradorModal(true)
+            }
+          }}
         />
       </div>
 
@@ -206,7 +222,10 @@ function Dashboard() {
                     )}
                   </div>
                   
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                  <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ fontSize: '12px', color: '#86868b', whiteSpace: 'nowrap' }}>
+                      {orador.lastVisitDate ? `Última: ${orador.lastVisitDate}` : 'Primeira visita'}
+                    </span>
                     {orador.phone && (
                       <button
                         onClick={(e) => {
@@ -217,20 +236,21 @@ function Dashboard() {
                           background: '#25d366',
                           color: 'white',
                           border: 'none',
-                          borderRadius: '6px',
-                          padding: '6px 10px',
-                          fontSize: '12px',
-                          fontWeight: '500',
+                          borderRadius: '50%',
+                          width: '20px',
+                          height: '20px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
                           cursor: 'pointer',
-                          marginBottom: '4px'
+                          padding: 0,
+                          flexShrink: 0
                         }}
+                        title="Enviar mensagem no WhatsApp"
                       >
-                        📱 WhatsApp
+                        <span style={{ fontSize: '12px' }}>📱</span>
                       </button>
                     )}
-                    <span style={{ fontSize: '12px', color: '#86868b' }}>
-                      {orador.lastVisitDate ? `Última: ${orador.lastVisitDate}` : 'Primeira visita'}
-                    </span>
                   </div>
                 </div>
               )
@@ -260,10 +280,10 @@ function Dashboard() {
 
       {/* Alertas Importantes */}
       <div className="card">
-        <h3 style={{ marginBottom: '16px', color: 'var(--jw-blue)' }}>
+        <h3 style={{ marginBottom: '8px', color: 'var(--jw-blue)', fontSize: '14px' }}>
           {t('alertasImportantes')}
         </h3>
-        <div style={{ textAlign: 'center', color: '#666', padding: '20px' }}>
+        <div style={{ textAlign: 'center', color: '#666', padding: '10px', fontSize: '12px' }}>
           {t('noAlerts')}
         </div>
       </div>

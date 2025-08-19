@@ -147,7 +147,7 @@ function DashboardCalendar({ oradores, eventos, onDateSelect, onOradorSelect }) 
                 }
               }}
               style={{
-                minHeight: '40px',
+                minHeight: '45px',
                 padding: '2px',
                 background: dayObj.isCurrentMonth ? 'white' : '#f5f5f5',
                 border: isToday ? '2px solid var(--jw-blue)' : 'none',
@@ -167,10 +167,10 @@ function DashboardCalendar({ oradores, eventos, onDateSelect, onOradorSelect }) 
               }}
             >
               <div style={{
-                fontSize: '10px',
+                fontSize: '14px',
                 fontWeight: isToday ? 'bold' : 'normal',
                 color: dayObj.isCurrentMonth ? (isToday ? 'var(--jw-blue)' : '#333') : '#999',
-                marginBottom: '1px'
+                marginBottom: '2px'
               }}>
                 {dayObj.date.getDate()}
               </div>
@@ -180,12 +180,12 @@ function DashboardCalendar({ oradores, eventos, onDateSelect, onOradorSelect }) 
                 <div
                   key={`cal-${eventIndex}`}
                   style={{
-                    fontSize: '8px',
-                    padding: '1px 2px',
+                    fontSize: '10px',
+                    padding: '2px 3px',
                     background: 'var(--jw-blue)',
                     color: 'white',
-                    borderRadius: '2px',
-                    marginBottom: '1px',
+                    borderRadius: '3px',
+                    marginBottom: '2px',
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     whiteSpace: 'nowrap'
@@ -205,13 +205,13 @@ function DashboardCalendar({ oradores, eventos, onDateSelect, onOradorSelect }) 
                     onOradorSelect(orador)
                   }}
                   style={{
-                    fontSize: '8px',
-                    padding: '1px 2px',
+                    fontSize: '10px',
+                    padding: '2px 3px',
                     background: orador.allergies?.type === 'grave' ? '#ff5722' : 
                                orador.allergies?.type === 'moderee' ? '#ff9800' : '#4caf50',
                     color: 'white',
-                    borderRadius: '2px',
-                    marginBottom: '1px',
+                    borderRadius: '3px',
+                    marginBottom: '2px',
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     whiteSpace: 'nowrap',
