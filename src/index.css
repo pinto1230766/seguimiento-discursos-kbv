@@ -6,12 +6,14 @@
 
 body {
   font-family: 'Samsung One', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  line-height: 1.5;
-  color: #333;
-  background-color: #f5f5f5;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  font-size: var(--font-size-base);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   touch-action: manipulation;
+  transition: background-color 0.3s ease, color 0.3s ease;
   /* Optimisations Samsung */
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -81,57 +83,61 @@ body {
   --success: #38a169;
   --warning: #d69e2e;
   --danger: #e53e3e;
-  --light: #f7fafc;
-  --dark: #2d3748;
+  
+  /* Mode clair */
+  --bg-color: #ffffff;
+  --text-color: #2d3748;
+  --text-secondary: #718096;
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
+  --input-bg: #ffffff;
   
   /* Mode sombre JW */
   --jw-dark-bg: #1a202c;
   --jw-dark-surface: #2d3748;
-  --jw-dark-text: #e2e8f0;
+  --jw-dark-text: #f7fafc;
+  --jw-dark-text-secondary: #cbd5e0;
   --jw-dark-border: #4a5568;
+  
+  /* Tailles de police améliorées */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
 }
 
 /* Mode sombre automatique */
 @media (prefers-color-scheme: dark) {
   body:not([data-theme="light"]) {
-    background-color: var(--jw-dark-bg) !important;
-    color: var(--jw-dark-text) !important;
+    --bg-color: var(--jw-dark-bg);
+    --text-color: var(--jw-dark-text);
+    --text-secondary: var(--jw-dark-text-secondary);
+    --card-bg: var(--jw-dark-surface);
+    --border-color: var(--jw-dark-border);
+    --input-bg: var(--jw-dark-surface);
   }
-  
-  :root:not([data-theme="light"]) {
-    --light: var(--jw-dark-surface);
-    --dark: var(--jw-dark-text);
-  }
 }
 
-/* Mode sombre manuel - Correction zones noires */
+/* Mode sombre manuel */
 [data-theme="dark"] {
-  background-color: var(--jw-dark-bg) !important;
-  color: var(--jw-dark-text) !important;
+  --bg-color: var(--jw-dark-bg) !important;
+  --text-color: var(--jw-dark-text) !important;
+  --text-secondary: var(--jw-dark-text-secondary) !important;
+  --card-bg: var(--jw-dark-surface) !important;
+  --border-color: var(--jw-dark-border) !important;
+  --input-bg: var(--jw-dark-surface) !important;
 }
 
-[data-theme="dark"] {
-  --light: var(--jw-dark-surface);
-  --dark: var(--jw-dark-text);
-}
-
-[data-theme="dark"] .card {
-  background: var(--jw-dark-surface) !important;
-  color: var(--jw-dark-text) !important;
-  border-color: var(--jw-dark-border) !important;
-}
-
-[data-theme="dark"] input, 
-[data-theme="dark"] textarea, 
-[data-theme="dark"] select {
-  background: var(--jw-dark-surface) !important;
-  color: var(--jw-dark-text) !important;
-  border-color: var(--jw-dark-border) !important;
-}
-
-[data-theme="dark"] .nav-bottom {
-  background: var(--jw-dark-surface) !important;
-  border-top-color: var(--jw-dark-border) !important;
+/* Mode clair manuel */
+[data-theme="light"] {
+  --bg-color: #ffffff !important;
+  --text-color: #2d3748 !important;
+  --text-secondary: #718096 !important;
+  --card-bg: #ffffff !important;
+  --border-color: #e2e8f0 !important;
+  --input-bg: #ffffff !important;
 }
 
 /* Mode clair manuel */
@@ -145,18 +151,20 @@ body {
   --dark: #343a40;
 }
 
-/* Boutons tactiles Android optimisés Samsung */
+/* Boutons avec thème unifié */
 button, .btn {
-  min-height: 48px;
-  min-width: 48px;
-  padding: 12px 16px;
-  border: none;
+  min-height: 52px;
+  min-width: 52px;
+  padding: 14px 20px;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: var(--font-size-base);
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   touch-action: manipulation;
+  background: var(--card-bg);
+  color: var(--text-color);
   /* Optimisations Samsung */
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
@@ -188,35 +196,38 @@ button, .btn {
   border: 1px solid #ddd;
 }
 
-/* Cards */
+/* Cards avec thème unifié */
 .card {
-  background: white;
+  background: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
-  padding: 16px;
-  margin: 8px 0;
+  padding: 18px;
+  margin: 12px 0;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
   /* Optimisation Samsung */
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   will-change: transform;
 }
 
-/* Cards en mode sombre */
-@media (prefers-color-scheme: dark) {
-  body:not([data-theme="light"]) .card {
-    background: #2d2d2d;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  }
+.card h3 {
+  color: var(--jw-blue);
+  font-size: var(--font-size-lg);
+  margin-bottom: 16px;
+  font-weight: 600;
 }
 
-[data-theme="dark"] .card {
-  background: #2d2d2d;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+.card p, .card div {
+  color: var(--text-color);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
 }
 
-[data-theme="light"] .card {
-  background: white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+.card .text-secondary {
+  color: var(--text-secondary) !important;
+  font-size: var(--font-size-sm);
 }
 
 /* Layout mobile-first */
@@ -289,53 +300,43 @@ button, .btn {
   }
 }
 
-/* Navigation */
+/* Navigation avec thème unifié */
 .nav-bottom {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background: white;
-  border-top: 1px solid #ddd;
+  background: var(--card-bg);
+  border-top: 1px solid var(--border-color);
   display: flex;
   justify-content: space-around;
-  padding: 8px 0;
+  padding: 12px 0;
   z-index: 1000;
+  transition: all 0.3s ease;
   /* Support pour écrans haute densité Samsung */
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-}
-
-/* Navigation en mode sombre */
-@media (prefers-color-scheme: dark) {
-  body:not([data-theme="light"]) .nav-bottom {
-    background: #2d2d2d;
-    border-top-color: #444;
-  }
-}
-
-[data-theme="dark"] .nav-bottom {
-  background: #2d2d2d;
-  border-top-color: #444;
-}
-
-[data-theme="light"] .nav-bottom {
-  background: white;
-  border-top-color: #ddd;
 }
 
 .nav-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 8px;
+  padding: 10px;
   text-decoration: none;
-  color: #666;
-  font-size: 12px;
-  min-width: 60px;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  min-width: 70px;
+  transition: all 0.3s ease;
   /* Optimisation tactile Samsung */
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
+}
+
+.nav-item span:first-child {
+  font-size: var(--font-size-xl);
+  margin-bottom: 4px;
 }
 
 /* Adaptation pour écrans Samsung haute résolution */
@@ -375,16 +376,119 @@ button, .btn {
   margin-top: 0;
 }
 
+/* Inputs et formulaires */
+input, textarea, select {
+  background: var(--input-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 8px;
+  padding: 14px;
+  font-size: var(--font-size-base);
+  transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--jw-blue) !important;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.1);
+}
+
+/* Labels et textes */
+label {
+  color: var(--text-color);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Titres */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-color);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+h1 { font-size: var(--font-size-2xl); }
+h2 { font-size: var(--font-size-xl); }
+h3 { font-size: var(--font-size-lg); }
+h4, h5, h6 { font-size: var(--font-size-base); }
+
+/* Textes secondaires */
+.text-secondary, .text-muted {
+  color: var(--text-secondary) !important;
+  font-size: var(--font-size-sm);
+}
+
+/* Modales */
+.modal {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color);
+}
+
+/* Tables */
+table {
+  background: var(--card-bg);
+  color: var(--text-color);
+}
+
+th, td {
+  border-color: var(--border-color) !important;
+  color: var(--text-color);
+  font-size: var(--font-size-sm);
+  padding: 12px 8px;
+}
+
+th {
+  background: var(--jw-blue);
+  color: white;
+  font-weight: 600;
+}
+
 /* Offline indicator */
 .offline-banner {
   background: var(--warning);
   color: #000;
   text-align: center;
-  padding: 8px;
-  font-size: 14px;
+  padding: 12px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1001;
+}
+
+/* Header */
+.header {
+  background: var(--jw-blue) !important;
+  color: white !important;
+}
+
+/* Corrections spécifiques pour zones noires */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+div, span, p, a {
+  color: inherit;
+}
+
+/* Force les couleurs sur tous les éléments */
+[data-theme="dark"] * {
+  border-color: var(--jw-dark-border) !important;
+}
+
+[data-theme="dark"] div:not(.btn):not(.card):not(.nav-item) {
+  background-color: transparent !important;
+}
+
+[data-theme="light"] div:not(.btn):not(.card):not(.nav-item) {
+  background-color: transparent !important;
 }

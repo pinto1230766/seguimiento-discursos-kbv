@@ -194,82 +194,127 @@ Por favor, guardem os recibos e coordenem o reembolso.`
   }
 
   const sendSMS = (phone, message) => {
-    // Sanitize inputs
-    const cleanPhone = phone.replace(/[^\d+]/g, '').replace(/\+(?!^)/g, '')
-    const encodedMessage = encodeURIComponent(message.substring(0, 160)) // SMS limit
-    
-    // Validate phone format
-    if (!/^\+?\d{8,15}$/.test(cleanPhone)) {
-      console.warn('Invalid phone format:', phone)
-      return
+    try {
+      // Sanitize inputs
+      if (typeof phone !== 'string' || typeof message !== 'string') {
+        console.warn('Invalid input types for sendSMS')
+        return
+      }
+      
+      const cleanPhone = phone.replace(/[^\d+]/g, '').replace(/\+(?!^)/g, '')
+      const safeMessage = String(message).substring(0, 160) // Limit message length
+      const encodedMessage = encodeURIComponent(safeMessage)
+      
+      // Validate phone format
+      if (!/^\+?\d{8,15}$/.test(cleanPhone)) {
+        console.warn('Invalid phone format')
+        return
+      }
+      
+      // Use a safer approach to open SMS
+      const smsUrl = `sms:${cleanPhone}?body=${encodedMessage}`
+      window.open(smsUrl, '_blank')
+    } catch (error) {
+      console.error('Error in sendSMS:', error instanceof Error ? error.message : 'Unknown error')
     }
-    
-    const smsUrl = `sms:${cleanPhone}?body=${encodedMessage}`
-    window.location.href = smsUrl
   }
 
   const shareMessage = (phone, message) => {
-    const text = `${message}\n\nPour: ${phone}`
-    
-    if (navigator.share) {
-      // API de partage natif (PWA installée)
-      navigator.share({
-        title: 'Message WhatsApp',
-        text: text
-      }).catch(err => console.warn('Erreur partage:', encodeURIComponent(err.message || 'Unknown error')))
-    } else {
-      // Fallback: copier dans le presse-papiers
-      navigator.clipboard.writeText(text).then(() => {
-        alert('Message copié ! Collez-le dans WhatsApp manuellement.')
-      }).catch(() => {
-        // Si clipboard ne marche pas, afficher le texte
-        prompt('Copiez ce message pour WhatsApp:', text)
-      })
+    try {
+      // Sanitize inputs
+      if (typeof phone !== 'string' || typeof message !== 'string') {
+        console.warn('Invalid input types for shareMessage')
+        return
+      }
+      
+      // Create safe text for sharing
+      const safePhone = String(phone).replace(/[^\d+]/g, '')
+      const safeMessage = String(message)
+      const text = `${safeMessage}\n\n${t('messageFor')}: ${safePhone}`
+      
+      if (navigator.share) {
+        // Native share API (PWA installed)
+        navigator.share({
+          title: t('whatsappMessage'),
+          text: text
+        }).catch(err => {
+          console.warn('Share error:', err instanceof Error ? err.message : 'Unknown error')
+        })
+      } else {
+        // Fallback: copier dans le presse-papiers
+        navigator.clipboard.writeText(text).then(() => {
+          alert(t('messageCopied'))
+        }).catch(() => {
+          // Si clipboard ne marche pas, afficher le texte
+          prompt(t('copyManually'), text)
+        })
+      }
+    } catch (error) {
+      console.error('Error in shareMessage:', error instanceof Error ? error.message : 'Unknown error')
     }
   }
 
   const sendToSelected = (method) => {
-    const validRecipients = selectedRecipients.filter(recipientId => {
-      const recipient = getRecipientsList().find(r => r.id === recipientId)
-      return recipient && recipient.hasPhone
-    })
-    
-    if (validRecipients.length === 0) return
-    
-    // Sur mobile, envoyer seulement le premier message pour éviter les blocages
-    const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-    const recipientsToSend = isMobile ? validRecipients.slice(0, 1) : validRecipients
-    
-    if (isMobile && validRecipients.length > 1) {
-      alert(`Sur mobile, envoi du premier message seulement (${recipientsToSend[0]}). Répétez l'opération pour les autres.`)
-    }
-    
-    recipientsToSend.forEach((recipientId, index) => {
-      const recipient = getRecipientsList().find(r => r.id === recipientId)
-      if (!recipient) return
-
-      let message = getCurrentTemplateMessage(selectedTemplate)
-      
-      let attribution = null
-      let hote = null
-      if (recipient.type === 'orador') {
-        attribution = attributions.find(a => a.orateurId === recipient.data.id && a.statut !== 'annulé')
-        if (attribution) {
-          hote = hotes.find(h => h.id === attribution.hoteId)
-        }
+    try {
+      // Validate method
+      if (typeof method !== 'string' || !['sms', 'whatsapp'].includes(method)) {
+        console.warn('Invalid send method:', method)
+        return
       }
-
-      const finalMessage = replaceVariables(message, recipient.data, hote, attribution)
       
-      // Délai entre les envois sur desktop
-      setTimeout(() => {
-        if (method === 'whatsapp') {
-          sendWhatsApp(recipient.phone, finalMessage)
-        } else {
-          sendSMS(recipient.phone, finalMessage)
+      // Get valid recipients
+      const validRecipients = (selectedRecipients || []).filter(recipientId => {
+        if (typeof recipientId !== 'string') return false
+        const recipient = getRecipientsList().find(r => r.id === recipientId)
+        return recipient && recipient.hasPhone
+      })
+      
+      if (validRecipients.length === 0) {
+        console.warn('No valid recipients selected')
+        return
+      }
+      
+      // On mobile, send only first message to avoid blocking
+      const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+      const recipientsToSend = isMobile ? validRecipients.slice(0, 1) : validRecipients
+      
+      if (isMobile && validRecipients.length > 1) {
+        alert(t('mobileSingleRecipientWarning', { recipient: recipientsToSend[0] }))
+      }
+      
+      recipientsToSend.forEach((recipientId, index) => {
+        try {
+          const recipient = getRecipientsList().find(r => r.id === recipientId)
+          if (!recipient) return
+
+          let message = getCurrentTemplateMessage(selectedTemplate)
+          
+          let attribution = null
+          let hote = null
+          if (recipient.type === 'orador') {
+            attribution = attributions.find(a => a.orateurId === recipient.data.id && a.statut !== 'annulé')
+            if (attribution) {
+              hote = hotes.find(h => h.id === attribution.hoteId)
+            }
+          }
+
+          const finalMessage = replaceVariables(message, recipient.data, hote, attribution)
+          
+          // Délai entre les envois sur desktop
+          setTimeout(() => {
+            if (method === 'whatsapp') {
+              sendWhatsApp(recipient.phone, finalMessage)
+            } else {
+              sendSMS(recipient.phone, finalMessage)
+            }
+          }, index * 2000) // 2 secondes entre chaque envoi
+        } catch (error) {
+          console.error('Error processing recipient:', recipientId, error)
         }
-      }, index * 2000) // 2 secondes entre chaque envoi
-    })
+      })
+    } catch (error) {
+      console.error('Error in sendToSelected:', error instanceof Error ? error.message : 'Unknown error')
+    }
   }
 
   const handleEditTemplate = (templateKey) => {

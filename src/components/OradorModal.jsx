@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 function OradorModal({ orador, onSave, onClose }) {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     nom: '',
     congregation: '',
@@ -115,7 +115,7 @@ function OradorModal({ orador, onSave, onClose }) {
           paddingBottom: '16px'
         }}>
           <h3 style={{ margin: 0, color: 'var(--jw-blue)' }}>
-            ✏️ Editar Orador
+            ✏️ {t('oradorModal.titulo')}
           </h3>
           <button 
             onClick={onClose}
@@ -136,14 +136,14 @@ function OradorModal({ orador, onSave, onClose }) {
             <div style={{ flex: 1 }}>
           {/* Informações básicas */}
           <div style={{ marginBottom: '20px' }}>
-            <h4 style={{ color: 'var(--jw-blue)', marginBottom: '12px' }}>
-              📋 Informações Básicas
-            </h4>
-            
-            <div style={{ marginBottom: '12px' }}>
-              <label style={{ display: 'block', marginBottom: '4px', fontWeight: '500' }}>
-                Nome *
-              </label>
+              <h4 style={{ color: 'var(--jw-blue)', marginBottom: '12px' }}>
+                📋 {t('oradorModal.secoes.informacoes')}
+              </h4>
+              
+              <div style={{ marginBottom: '12px' }}>
+                <label style={{ display: 'block', marginBottom: '4px', fontWeight: '500' }}>
+                  {t('oradorModal.campos.nome')} *
+                </label>
               <input
                 type="text"
                 value={formData.nom}
@@ -161,7 +161,7 @@ function OradorModal({ orador, onSave, onClose }) {
 
             <div style={{ marginBottom: '12px' }}>
               <label style={{ display: 'block', marginBottom: '4px', fontWeight: '500' }}>
-                Congregação *
+                {t('oradorModal.campos.congregacao')} *
               </label>
               <input
                 type="text"
@@ -180,7 +180,7 @@ function OradorModal({ orador, onSave, onClose }) {
 
             <div style={{ marginBottom: '12px' }}>
               <label style={{ display: 'block', marginBottom: '4px', fontWeight: '500' }}>
-                Tipo de Orador *
+                {t('oradorModal.campos.tipo')} *
               </label>
               <select
                 value={formData.type}
@@ -194,20 +194,20 @@ function OradorModal({ orador, onSave, onClose }) {
                   fontSize: '14px'
                 }}
               >
-                <option value="local">🏠 Local (Lyon)</option>
-                <option value="visiteur">✈️ Visiteur (Extérieur)</option>
+                <option value="local">🏠 {t('oradorModal.opcoes.local')}</option>
+                <option value="visiteur">✈️ {t('oradorModal.opcoes.visiteur')}</option>
               </select>
               <div style={{ fontSize: '12px', color: '#666', marginTop: '4px' }}>
                 {formData.type === 'local' ? 
-                  'Orateur de la congrégation de Lyon' : 
-                  'Orateur visiteur nécessitant hébergement/transport'
+                  t('oradorModal.descricao.local') : 
+                  t('oradorModal.descricao.visiteur')
                 }
               </div>
             </div>
 
             <div style={{ marginBottom: '12px' }}>
               <label style={{ display: 'block', marginBottom: '4px', fontWeight: '500' }}>
-                Telefone
+                {t('oradorModal.campos.telefone')}
               </label>
               <input
                 type="tel"
@@ -227,13 +227,13 @@ function OradorModal({ orador, onSave, onClose }) {
           {/* Visitas */}
           <div style={{ marginBottom: '20px' }}>
             <h4 style={{ color: 'var(--jw-blue)', marginBottom: '12px' }}>
-              📅 Visitas
+              📅 {t('oradorModal.secoes.visitas')}
             </h4>
             
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '12px' }}>
               <div>
                 <label style={{ display: 'block', marginBottom: '4px', fontWeight: '500' }}>
-                  Última Visita
+                  {t('oradorModal.campos.ultimaVisita')}
                 </label>
                 <input
                   type="date"
@@ -250,7 +250,7 @@ function OradorModal({ orador, onSave, onClose }) {
               </div>
               <div>
                 <label style={{ display: 'block', marginBottom: '4px', fontWeight: '500' }}>
-                  Próxima Visita
+                  {t('oradorModal.campos.proximaVisita')}
                 </label>
                 <input
                   type="date"
@@ -270,7 +270,7 @@ function OradorModal({ orador, onSave, onClose }) {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
               <div>
                 <label style={{ display: 'block', marginBottom: '4px', fontWeight: '500' }}>
-                  N° Último Discurso
+                  {t('oradorModal.campos.ultimoDiscurso')}
                 </label>
                 <input
                   type="text"
@@ -287,7 +287,7 @@ function OradorModal({ orador, onSave, onClose }) {
               </div>
               <div>
                 <label style={{ display: 'block', marginBottom: '4px', fontWeight: '500' }}>
-                  N° Próximo Discurso
+                  {t('oradorModal.campos.proximoDiscurso')}
                 </label>
                 <input
                   type="text"
@@ -308,7 +308,7 @@ function OradorModal({ orador, onSave, onClose }) {
           {/* Necessidades */}
           <div style={{ marginBottom: '20px' }}>
             <h4 style={{ color: 'var(--jw-blue)', marginBottom: '12px' }}>
-              🏠 Necessidades
+              🏠 {t('oradorModal.secoes.necessidades')}
             </h4>
             
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '12px' }}>
@@ -318,7 +318,7 @@ function OradorModal({ orador, onSave, onClose }) {
                   checked={formData.needs.hebergement}
                   onChange={(e) => handleNeedsChange('hebergement', e.target.checked)}
                 />
-                🏠 Hospedagem
+                🏠 {t('oradorModal.opcoes.hospedagem')}
               </label>
               <label style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <input
@@ -326,7 +326,7 @@ function OradorModal({ orador, onSave, onClose }) {
                   checked={formData.needs.repas}
                   onChange={(e) => handleNeedsChange('repas', e.target.checked)}
                 />
-                🍽️ Refeições
+                🍽️ {t('oradorModal.opcoes.refeicoes')}
               </label>
               <label style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <input
@@ -334,18 +334,18 @@ function OradorModal({ orador, onSave, onClose }) {
                   checked={formData.needs.transport}
                   onChange={(e) => handleNeedsChange('transport', e.target.checked)}
                 />
-                🚗 Transporte
+                🚗 {t('oradorModal.opcoes.transporte')}
               </label>
             </div>
 
             <div>
               <label style={{ display: 'block', marginBottom: '4px', fontWeight: '500' }}>
-                Outras Necessidades
+                {t('oradorModal.campos.outrasNecessidades')}
               </label>
               <textarea
                 value={formData.needs.autres}
                 onChange={(e) => handleNeedsChange('autres', e.target.value)}
-                placeholder="Descreva outras necessidades específicas..."
+                placeholder={t('oradorModal.placeholders.outrasNecessidades')}
                 style={{
                   width: '100%',
                   padding: '8px',
@@ -361,12 +361,12 @@ function OradorModal({ orador, onSave, onClose }) {
           {/* Alergias */}
           <div style={{ marginBottom: '20px' }}>
             <h4 style={{ color: 'var(--jw-blue)', marginBottom: '12px' }}>
-              🚨 Alergias
+              🚨 {t('oradorModal.secoes.alergias')}
             </h4>
             
             <div style={{ marginBottom: '12px' }}>
               <label style={{ display: 'block', marginBottom: '4px', fontWeight: '500' }}>
-                Tipo de Alergia
+                {t('oradorModal.campos.tipoAlergia')}
               </label>
               <select
                 value={formData.allergies.type || ''}
@@ -379,21 +379,21 @@ function OradorModal({ orador, onSave, onClose }) {
                   fontSize: '14px'
                 }}
               >
-                <option value="">Sem alergias</option>
-                <option value="moderee">Moderada</option>
-                <option value="grave">Grave</option>
+                <option value="">{t('oradorModal.opcoes.semAlergias')}</option>
+                <option value="moderee">{t('oradorModal.opcoes.alergiaModerada')}</option>
+                <option value="grave">{t('oradorModal.opcoes.alergiaGrave')}</option>
               </select>
             </div>
 
             {formData.allergies.type && (
               <div>
                 <label style={{ display: 'block', marginBottom: '4px', fontWeight: '500' }}>
-                  Detalhes da Alergia
+                  {t('oradorModal.campos.detalhesAlergia')}
                 </label>
                 <textarea
                   value={formData.allergies.details}
                   onChange={(e) => handleAllergiesChange('details', e.target.value)}
-                  placeholder="Descreva os detalhes da alergia..."
+                  placeholder={t('oradorModal.placeholders.detalhesAlergia')}
                   style={{
                     width: '100%',
                     padding: '8px',
@@ -410,12 +410,12 @@ function OradorModal({ orador, onSave, onClose }) {
           {/* Notas */}
           <div style={{ marginBottom: '20px' }}>
             <h4 style={{ color: 'var(--jw-blue)', marginBottom: '12px' }}>
-              📝 Notas
+              📝 {t('oradorModal.secoes.notas')}
             </h4>
             <textarea
               value={formData.notes}
               onChange={(e) => handleInputChange('notes', e.target.value)}
-              placeholder="Notas adicionais sobre o orador..."
+              placeholder={t('oradorModal.placeholders.notas')}
               style={{
                 width: '100%',
                 padding: '8px',
@@ -445,14 +445,14 @@ function OradorModal({ orador, onSave, onClose }) {
                 className="btn btn-primary" 
                 style={{ flex: 1 }}
               >
-                💾 Salvar
+                💾 {t('comum.salvar')}
               </button>
               <button 
                 type="button" 
                 onClick={onClose} 
                 className="btn btn-secondary"
               >
-                ❌ Cancelar
+                ❌ {t('comum.cancelar')}
               </button>
             </div>
           </form>

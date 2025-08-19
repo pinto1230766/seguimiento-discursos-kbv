@@ -97,6 +97,56 @@ const resources = {
       proposto: 'Proposto',
       cancelado: 'Cancelado',
       
+      // OradorModal
+      oradorModal: {
+        titulo: 'Editar Orador',
+        secoes: {
+          informacoes: 'Informações Básicas',
+          visitas: 'Visitas',
+          necessidades: 'Necessidades',
+          alergias: 'Alergias',
+          notas: 'Notas'
+        },
+        campos: {
+          nome: 'Nome',
+          congregacao: 'Congregação',
+          tipo: 'Tipo de Orador',
+          telefone: 'Telefone',
+          ultimaVisita: 'Última Visita',
+          proximaVisita: 'Próxima Visita',
+          ultimoDiscurso: 'N° Último Discurso',
+          proximoDiscurso: 'N° Próximo Discurso',
+          outrasNecessidades: 'Outras Necessidades',
+          tipoAlergia: 'Tipo de Alergia',
+          detalhesAlergia: 'Detalhes da Alergia'
+        },
+        opcoes: {
+          local: 'Local (Lyon)',
+          visiteur: 'Visiteur (Extérieur)',
+          hospedagem: 'Hospedagem',
+          refeicoes: 'Refeições',
+          transporte: 'Transporte',
+          semAlergias: 'Sem alergias',
+          alergiaModerada: 'Moderada',
+          alergiaGrave: 'Grave'
+        },
+        descricao: {
+          local: 'Orateur de la congrégation de Lyon',
+          visiteur: 'Orateur visiteur nécessitant hébergement/transport'
+        },
+        placeholders: {
+          outrasNecessidades: 'Descreva outras necessidades específicas...',
+          detalhesAlergia: 'Descreva os detalhes da alergia...',
+          notas: 'Notas adicionais sobre o orador...'
+        }
+      },
+      
+      // Comum
+      comum: {
+        salvar: 'Salvar',
+        cancelar: 'Cancelar'
+      },
+      
       // Sobre
       sobre: 'Sobre',
       versao: 'Versão',
@@ -195,6 +245,56 @@ const resources = {
       confirmado: 'Confirmé',
       proposto: 'Proposé',
       cancelado: 'Annulé',
+      
+      // OradorModal
+      oradorModal: {
+        titulo: 'Modifier l\'Orateur',
+        secoes: {
+          informacoes: 'Informations de Base',
+          visitas: 'Visites',
+          necessidades: 'Besoins',
+          alergias: 'Allergies',
+          notas: 'Notes'
+        },
+        campos: {
+          nome: 'Nom',
+          congregacao: 'Congrégation',
+          tipo: 'Type d\'Orateur',
+          telefone: 'Téléphone',
+          ultimaVisita: 'Dernière Visite',
+          proximaVisita: 'Prochaine Visite',
+          ultimoDiscurso: 'N° Dernier Discours',
+          proximoDiscurso: 'N° Prochain Discours',
+          outrasNecessidades: 'Autres Besoins',
+          tipoAlergia: 'Type d\'Allergie',
+          detalhesAlergia: 'Détails de l\'Allergie'
+        },
+        opcoes: {
+          local: 'Local (Lyon)',
+          visiteur: 'Visiteur (Extérieur)',
+          hospedagem: 'Hébergement',
+          refeicoes: 'Repas',
+          transporte: 'Transport',
+          semAlergias: 'Sans allergie',
+          alergiaModerada: 'Modérée',
+          alergiaGrave: 'Grave'
+        },
+        descricao: {
+          local: 'Orateur de la congrégation de Lyon',
+          visiteur: 'Orateur visiteur nécessitant hébergement/transport'
+        },
+        placeholders: {
+          outrasNecessidades: 'Décrivez d\'autres besoins spécifiques...',
+          detalhesAlergia: 'Décrivez les détails de l\'allergie...',
+          notas: 'Notes supplémentaires sur l\'orateur...'
+        }
+      },
+      
+      // Comum
+      comum: {
+        salvar: 'Enregistrer',
+        cancelar: 'Annuler'
+      },
       
       // Sobre
       sobre: 'À propos',
@@ -295,6 +395,56 @@ const resources = {
       confirmado: 'Konfirmadu',
       proposto: 'Propóstu',
       cancelado: 'Kanseladu',
+      
+      // OradorModal
+      oradorModal: {
+        titulo: 'Redaktá Orádor',
+        secoes: {
+          informacoes: 'Informason Bázika',
+          visitas: 'Vizitas',
+          necessidades: 'Nesidadis',
+          alergias: 'Alerjias',
+          notas: 'Notas'
+        },
+        campos: {
+          nome: 'Nòm',
+          congregacao: 'Kongregason',
+          tipo: 'Tipu di Orádor',
+          telefone: 'Telifone',
+          ultimaVisita: 'Últimu Vizita',
+          proximaVisita: 'Próksimu Vizita',
+          ultimoDiscurso: 'N° Últimu Diskursu',
+          proximoDiscurso: 'N° Próksimu Diskursu',
+          outrasNecessidades: 'Otru Nesesidadis',
+          tipoAlergia: 'Tipu di Alerjia',
+          detalhesAlergia: 'Detalhis di Alerjia'
+        },
+        opcoes: {
+          local: 'Lokal (Lyon)',
+          visiteur: 'Vizitante (Fora)',
+          hospedagem: 'Alojamentu',
+          refeicoes: 'Refeison',
+          transporte: 'Transporti',
+          semAlergias: 'Sem alerjias',
+          alergiaModerada: 'Moderadu',
+          alergiaGrave: 'Gravi'
+        },
+        descricao: {
+          local: 'Orádor di kongregason di Lyon',
+          visiteur: 'Orádor vizitante ku nesesita alojamentu/transporti'
+        },
+        placeholders: {
+          outrasNecessidades: 'Deskreve otru nesesidadi spésifiku...',
+          detalhesAlergia: 'Deskreve detalis di alerjia...',
+          notas: 'Notas adisionais kona-sé orádor...'
+        }
+      },
+      
+      // Comum
+      comum: {
+        salvar: 'Gravá',
+        cancelar: 'Kanselá'
+      },
       
       // Sobre
       sobre: 'Sobri',
