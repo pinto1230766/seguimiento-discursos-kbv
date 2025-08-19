@@ -62,17 +62,19 @@ function Dashboard() {
       background: color,
       color: 'white',
       textAlign: 'center',
-      minHeight: '60px',
+      minHeight: '80px',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
-      padding: '8px'
+      padding: '12px 8px',
+      borderRadius: '8px',
+      boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
     }}>
-      <div style={{ fontSize: '20px', marginBottom: '4px' }}>{icon}</div>
-      <div style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '2px' }}>
+      <div style={{ fontSize: '24px', marginBottom: '6px' }}>{icon}</div>
+      <div style={{ fontSize: '28px', fontWeight: 'bold', marginBottom: '4px', lineHeight: '1' }}>
         {value}
       </div>
-      <div style={{ fontSize: '11px', opacity: 0.9 }}>{title}</div>
+      <div style={{ fontSize: '13px', opacity: 0.95, fontWeight: '500', lineHeight: '1.2' }}>{title}</div>
     </div>
   )
 
@@ -85,9 +87,9 @@ function Dashboard() {
       {/* Métriques principales */}
       <div className="metrics-grid" style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
-        gap: '8px',
-        marginBottom: '16px'
+        gridTemplateColumns: 'repeat(2, 1fr)',
+        gap: '12px',
+        marginBottom: '20px'
       }}>
         <MetricCard
           title={t('visitantesAtuais')}
