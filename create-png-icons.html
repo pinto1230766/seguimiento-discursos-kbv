@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Créer Icônes PNG pour Téléphone</title>
+</head>
+<body>
+    <h2>Icônes PNG pour Samsung S25 Ultra</h2>
+    <canvas id="canvas192" width="192" height="192"></canvas>
+    <canvas id="canvas512" width="512" height="512"></canvas>
+    
+    <div style="margin: 20px 0;">
+        <button onclick="downloadPNG(192)" style="padding: 10px 20px; margin: 5px; background: #4a6fa5; color: white; border: none; border-radius: 5px;">📱 Télécharger 192x192</button>
+        <button onclick="downloadPNG(512)" style="padding: 10px 20px; margin: 5px; background: #4a6fa5; color: white; border: none; border-radius: 5px;">📱 Télécharger 512x512</button>
+    </div>
+
+    <script>
+        function createIcon(size) {
+            const canvas = document.getElementById(`canvas${size}`);
+            const ctx = canvas.getContext('2d');
+            const s = size / 512; // scale factor
+            
+            // Clear
+            ctx.clearRect(0, 0, size, size);
+            
+            // Background gradient
+            const gradient = ctx.createRadialGradient(size/2, size/2, 0, size/2, size/2, size/2);
+            gradient.addColorStop(0, '#6b8bc3');
+            gradient.addColorStop(1, '#4a6fa5');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+            
+            // Border
+            ctx.strokeStyle = '#2c5282';
+            ctx.lineWidth = 8 * s;
+            ctx.strokeRect(4*s, 4*s, size-8*s, size-8*s);
+            
+            // Microphone (center top)
+            ctx.fillStyle = 'white';
+            ctx.shadowColor = 'rgba(0,0,0,0.3)';
+            ctx.shadowBlur = 4 * s;
+            
+            // Mic body
+            ctx.beginPath();
+            ctx.roundRect(236*s, 120*s, 40*s, 80*s, 20*s);
+            ctx.fill();
+            
+            // Mic stand
+            ctx.fillRect(254*s, 200*s, 4*s, 60*s);
+            
+            // Mic base
+            ctx.beginPath();
+            ctx.ellipse(256*s, 270*s, 30*s, 10*s, 0, 0, 2*Math.PI);
+            ctx.fill();
+            
+            // Sound waves
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = 3 * s;
+            ctx.beginPath();
+            ctx.arc(256*s, 160*s, 50*s, -0.5, 0.5);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(256*s, 160*s, 70*s, -0.7, 0.7);
+            ctx.stroke();
+            
+            ctx.shadowBlur = 0;
+            
+            // House (bottom left)
+            ctx.fillStyle = 'white';
+            ctx.shadowColor = 'rgba(0,0,0,0.3)';
+            ctx.shadowBlur = 4 * s;
+            
+            // House base
+            ctx.fillRect(80*s, 350*s, 80*s, 60*s);
+            
+            // Roof
+            ctx.beginPath();
+            ctx.moveTo(70*s, 350*s);
+            ctx.lineTo(120*s, 310*s);
+            ctx.lineTo(170*s, 350*s);
+            ctx.closePath();
+            ctx.fill();
+            
+            // Door
+            ctx.fillStyle = '#2c5282';
+            ctx.fillRect(105*s, 380*s, 20*s, 30*s);
+            
+            // Window
+            ctx.fillRect(135*s, 365*s, 15*s, 15*s);
+            
+            ctx.shadowBlur = 0;
+            
+            // Calendar (bottom right)
+            ctx.fillStyle = 'white';
+            ctx.shadowColor = 'rgba(0,0,0,0.3)';
+            ctx.shadowBlur = 4 * s;
+            
+            // Calendar base
+            ctx.beginPath();
+            ctx.roundRect(350*s, 340*s, 80*s, 70*s, 5*s);
+            ctx.fill();
+            
+            // Calendar header
+            ctx.fillStyle = '#2c5282';
+            ctx.fillRect(350*s, 340*s, 80*s, 20*s);
+            
+            // Rings
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            ctx.arc(370*s, 330*s, 5*s, 0, 2*Math.PI);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(410*s, 330*s, 5*s, 0, 2*Math.PI);
+            ctx.fill();
+            
+            // Grid lines
+            ctx.strokeStyle = '#2c5282';
+            ctx.lineWidth = 1 * s;
+            for(let i = 1; i < 4; i++) {
+                ctx.beginPath();
+                ctx.moveTo(360*s, (360 + i*12)*s);
+                ctx.lineTo(420*s, (360 + i*12)*s);
+                ctx.stroke();
+            }
+            for(let i = 1; i < 3; i++) {
+                ctx.beginPath();
+                ctx.moveTo((360 + i*20)*s, 360*s);
+                ctx.lineTo((360 + i*20)*s, 400*s);
+                ctx.stroke();
+            }
+            
+            ctx.shadowBlur = 0;
+            
+            // Text
+            ctx.fillStyle = 'white';
+            ctx.font = `bold ${32*s}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.shadowColor = 'rgba(0,0,0,0.5)';
+            ctx.shadowBlur = 2 * s;
+            ctx.fillText('DISCURSOS', 256*s, 460*s);
+            
+            ctx.font = `bold ${24*s}px Arial`;
+            ctx.fillText('KBV', 256*s, 490*s);
+        }
+        
+        function downloadPNG(size) {
+            const canvas = document.getElementById(`canvas${size}`);
+            const link = document.createElement('a');
+            link.download = `pwa-${size}x${size}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        // Create icons on load
+        window.onload = function() {
+            createIcon(192);
+            createIcon(512);
+        }
+    </script>
+</body>
+</html>

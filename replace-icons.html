@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Remplacer Icônes PWA</title>
+</head>
+<body>
+    <h2>🎯 Nouvelles Icônes pour ton Samsung S25 Ultra</h2>
+    
+    <div style="display: flex; gap: 20px; margin: 20px 0;">
+        <div>
+            <h3>192x192 (Écran d'accueil)</h3>
+            <canvas id="icon192" width="192" height="192" style="border: 2px solid #4a6fa5;"></canvas>
+            <br><button onclick="replaceIcon(192)">💾 Remplacer pwa-192x192.png</button>
+        </div>
+        
+        <div>
+            <h3>512x512 (Splash screen)</h3>
+            <canvas id="icon512" width="512" height="512" style="border: 2px solid #4a6fa5; max-width: 200px;"></canvas>
+            <br><button onclick="replaceIcon(512)">💾 Remplacer pwa-512x512.png</button>
+        </div>
+    </div>
+
+    <script>
+        function drawIcon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            const s = size / 512;
+            
+            // Background JW Blue
+            const gradient = ctx.createLinearGradient(0, 0, 0, size);
+            gradient.addColorStop(0, '#6b8bc3');
+            gradient.addColorStop(1, '#4a6fa5');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+            
+            // White circle background
+            ctx.fillStyle = 'rgba(255,255,255,0.1)';
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size*0.4, 0, 2*Math.PI);
+            ctx.fill();
+            
+            // Microphone (top center)
+            ctx.fillStyle = 'white';
+            ctx.shadowColor = 'rgba(0,0,0,0.3)';
+            ctx.shadowBlur = 4*s;
+            
+            // Mic capsule
+            ctx.beginPath();
+            ctx.roundRect((256-25)*s, (180-50)*s, 50*s, 100*s, 25*s);
+            ctx.fill();
+            
+            // Mic stand
+            ctx.fillRect((256-3)*s, (180+50)*s, 6*s, 80*s);
+            
+            // Mic base
+            ctx.beginPath();
+            ctx.ellipse(256*s, (180+140)*s, 40*s, 12*s, 0, 0, 2*Math.PI);
+            ctx.fill();
+            
+            ctx.shadowBlur = 0;
+            
+            // House icon (bottom left)
+            ctx.fillStyle = 'white';
+            ctx.shadowColor = 'rgba(0,0,0,0.3)';
+            ctx.shadowBlur = 3*s;
+            
+            const houseX = 150*s, houseY = 380*s;
+            // House base
+            ctx.fillRect(houseX-30*s, houseY-20*s, 60*s, 50*s);
+            // Roof
+            ctx.beginPath();
+            ctx.moveTo(houseX-40*s, houseY-20*s);
+            ctx.lineTo(houseX, houseY-50*s);
+            ctx.lineTo(houseX+40*s, houseY-20*s);
+            ctx.closePath();
+            ctx.fill();
+            // Door
+            ctx.fillStyle = '#2c5282';
+            ctx.fillRect(houseX-10*s, houseY+10*s, 20*s, 20*s);
+            // Window
+            ctx.fillRect(houseX+10*s, houseY-10*s, 15*s, 15*s);
+            
+            ctx.shadowBlur = 0;
+            
+            // Calendar (bottom right)
+            ctx.fillStyle = 'white';
+            ctx.shadowColor = 'rgba(0,0,0,0.3)';
+            ctx.shadowBlur = 3*s;
+            
+            const calX = 362*s, calY = 380*s;
+            // Calendar base
+            ctx.beginPath();
+            ctx.roundRect(calX-30*s, calY-25*s, 60*s, 55*s, 5*s);
+            ctx.fill();
+            
+            // Calendar header
+            ctx.fillStyle = '#2c5282';
+            ctx.fillRect(calX-30*s, calY-25*s, 60*s, 15*s);
+            
+            // Calendar rings
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            ctx.arc(calX-15*s, calY-35*s, 4*s, 0, 2*Math.PI);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(calX+15*s, calY-35*s, 4*s, 0, 2*Math.PI);
+            ctx.fill();
+            
+            ctx.shadowBlur = 0;
+            
+            // App name
+            ctx.fillStyle = 'white';
+            ctx.font = `bold ${28*s}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.shadowColor = 'rgba(0,0,0,0.5)';
+            ctx.shadowBlur = 2*s;
+            ctx.fillText('DISCURSOS', 256*s, 460*s);
+            
+            ctx.font = `bold ${20*s}px Arial`;
+            ctx.fillText('KBV', 256*s, 485*s);
+        }
+        
+        function replaceIcon(size) {
+            const canvas = document.getElementById(`icon${size}`);
+            const dataURL = canvas.toDataURL('image/png');
+            
+            // Create download link
+            const link = document.createElement('a');
+            link.download = `pwa-${size}x${size}.png`;
+            link.href = dataURL;
+            link.click();
+            
+            alert(`✅ Icône ${size}x${size} téléchargée!\\n\\n📱 Remplace le fichier dans /public/pwa-${size}x${size}.png\\n🔄 Puis actualise ton app sur le téléphone`);
+        }
+        
+        // Draw icons on load
+        window.onload = function() {
+            drawIcon(document.getElementById('icon192'), 192);
+            drawIcon(document.getElementById('icon512'), 512);
+        }
+    </script>
+</body>
+</html>
