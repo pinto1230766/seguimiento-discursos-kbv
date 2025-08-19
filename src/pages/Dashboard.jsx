@@ -62,20 +62,20 @@ function Dashboard() {
       background: '#ffffff',
       color: '#1d1d1f',
       textAlign: 'center',
-      minHeight: '65px',
+      minHeight: '70px',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
-      padding: '10px 8px',
+      padding: '12px 8px',
       borderRadius: '12px',
       border: '1px solid #e5e5e7',
       boxShadow: '0 1px 3px rgba(0,0,0,0.05)'
     }}>
-      <div style={{ fontSize: '18px', marginBottom: '3px', opacity: 0.7 }}>{icon}</div>
-      <div style={{ fontSize: '22px', fontWeight: '600', marginBottom: '2px', lineHeight: '1', color: '#1d1d1f' }}>
+      <div style={{ fontSize: '20px', marginBottom: '4px', opacity: 0.7 }}>{icon}</div>
+      <div style={{ fontSize: '26px', fontWeight: '600', marginBottom: '3px', lineHeight: '1', color: '#1d1d1f' }}>
         {value}
       </div>
-      <div style={{ fontSize: '11px', opacity: 0.6, fontWeight: '400', lineHeight: '1.1', color: '#86868b' }}>{title}</div>
+      <div style={{ fontSize: '13px', opacity: 0.6, fontWeight: '400', lineHeight: '1.2', color: '#86868b' }}>{title}</div>
     </div>
   )
 
