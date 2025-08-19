@@ -5,52 +5,16 @@
   <!-- Inner circle -->
   <circle cx="256" cy="256" r="200" fill="#6b8bc3" opacity="0.3"/>
   
-  <!-- Microphone icon (representing speakers/oradores) -->
-  <g transform="translate(256, 180)">
-    <!-- Microphone body -->
-    <rect x="-20" y="-40" width="40" height="60" rx="20" fill="white"/>
-    <!-- Microphone stand -->
-    <rect x="-3" y="20" width="6" height="40" fill="white"/>
-    <!-- Microphone base -->
-    <ellipse cx="0" cy="65" rx="25" ry="8" fill="white"/>
-    <!-- Sound waves -->
-    <path d="M 35 -10 Q 45 0 35 10" stroke="white" stroke-width="4" fill="none"/>
-    <path d="M 45 -20 Q 60 0 45 20" stroke="white" stroke-width="4" fill="none"/>
-    <path d="M -35 -10 Q -45 0 -35 10" stroke="white" stroke-width="4" fill="none"/>
-    <path d="M -45 -20 Q -60 0 -45 20" stroke="white" stroke-width="4" fill="none"/>
-  </g>
+  <!-- KBV text large -->
+  <text x="256" y="280" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="120" font-weight="bold">KBV</text>
   
-  <!-- House icon (representing hosts/anfitriões) -->
-  <g transform="translate(180, 320)">
-    <!-- House base -->
-    <rect x="-25" y="-15" width="50" height="35" fill="white"/>
-    <!-- House roof -->
-    <polygon points="-30,-15 0,-35 30,-15" fill="white"/>
-    <!-- Door -->
-    <rect x="-8" y="5" width="16" height="15" fill="#4a6fa5"/>
-    <!-- Window -->
-    <rect x="10" y="-5" width="12" height="10" fill="#4a6fa5"/>
-  </g>
+  <!-- Subtitle -->
+  <text x="256" y="350" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="32" font-weight="normal">GD-FP</text>
   
-  <!-- Calendar icon (representing visits) -->
-  <g transform="translate(332, 320)">
-    <!-- Calendar base -->
-    <rect x="-20" y="-15" width="40" height="35" rx="3" fill="white"/>
-    <!-- Calendar header -->
-    <rect x="-20" y="-15" width="40" height="8" fill="#4a6fa5"/>
-    <!-- Calendar rings -->
-    <circle cx="-10" cy="-20" r="3" fill="white"/>
-    <circle cx="10" cy="-20" r="3" fill="white"/>
-    <!-- Calendar grid -->
-    <line x1="-15" y1="-2" x2="15" y2="-2" stroke="#4a6fa5" stroke-width="1"/>
-    <line x1="-15" y1="5" x2="15" y2="5" stroke="#4a6fa5" stroke-width="1"/>
-    <line x1="-15" y1="12" x2="15" y2="12" stroke="#4a6fa5" stroke-width="1"/>
-    <line x1="-8" y1="-7" x2="-8" y2="20" stroke="#4a6fa5" stroke-width="1"/>
-    <line x1="0" y1="-7" x2="0" y2="20" stroke="#4a6fa5" stroke-width="1"/>
-    <line x1="8" y1="-7" x2="8" y2="20" stroke="#4a6fa5" stroke-width="1"/>
-  </g>
-  
-  <!-- App title -->
-  <text x="256" y="420" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24" font-weight="bold">DISCURSOS</text>
-  <text x="256" y="445" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="18">KBV</text>
+  <!-- Decorative elements -->
+  <circle cx="150" cy="150" r="8" fill="white" opacity="0.7"/>
+  <circle cx="362" cy="150" r="8" fill="white" opacity="0.7"/>
+  <circle cx="256" cy="100" r="6" fill="white" opacity="0.5"/>
+  <circle cx="100" cy="256" r="6" fill="white" opacity="0.4"/>
+  <circle cx="412" cy="256" r="6" fill="white" opacity="0.4"/>
 </svg>

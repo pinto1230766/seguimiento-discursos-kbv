@@ -1,5 +1,5 @@
-const fs = require('fs');
-const { createCanvas } = require('canvas');
+import fs from 'fs';
+import { createCanvas } from 'canvas';
 
 function createAppIcon(size) {
     const canvas = createCanvas(size, size);
@@ -120,10 +120,7 @@ function createAppIcon(size) {
     ctx.textAlign = 'center';
     ctx.shadowColor = 'rgba(0,0,0,0.5)';
     ctx.shadowBlur = 2*s;
-    ctx.fillText('DISCURSOS', 256*s, 440*s);
-    
-    ctx.font = `bold ${18*s}px Arial`;
-    ctx.fillText('KBV', 256*s, 465*s);
+    ctx.fillText('KBV-GD-FP', 256*s, 450*s);
     
     return canvas.toBuffer('image/png');
 }

@@ -1,6 +1,6 @@
 {
-  "name": "Seguimiento Discursos KBV",
-  "short_name": "Discursos KBV",
+  "name": "KBV-GD-FP",
+  "short_name": "KBV-GD-FP",
   "description": "Gestão de visitas de oradores capverdianos - Testemunhas de Jeová",
   "start_url": "/",
   "display": "standalone",
