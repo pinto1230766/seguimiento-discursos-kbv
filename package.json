@@ -1,0 +1,65 @@
+{
+  "name": "seguimiento-discursos-kbv",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Application PWA pour gérer les visites d'orateurs capverdiens à Lyon",
+  "author": "Francisco Pinto",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "electron": "electron .",
+    "electron:dev": "concurrently \"npm run dev\" \"wait-on http://localhost:5173 && electron .\"",
+    "electron:build": "npm run build && electron-builder",
+    "apk:build": "npm run build && npx cap copy android && npx cap sync android"
+  },
+  "main": "electron-main.js",
+  "homepage": "./",
+  "dependencies": {
+    "@capacitor/android": "^7.4.2",
+    "@capacitor/cli": "^7.4.2",
+    "@capacitor/core": "^7.4.2",
+    "date-fns": "^2.29.3",
+    "dexie": "^3.2.3",
+    "i18next": "^22.4.10",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^12.1.5",
+    "react-router-dom": "^6.8.1",
+    "zustand": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@vitejs/plugin-react": "^5.0.1",
+    "concurrently": "^7.6.0",
+    "electron": "^37.3.1",
+    "electron-builder": "^24.0.0",
+    "vite": "^7.1.3",
+    "vite-plugin-pwa": "^1.0.2",
+    "wait-on": "^7.0.1"
+  },
+  "build": {
+    "appId": "com.franciscopinto.seguimiento.discursos.kbv",
+    "productName": "Seguimiento Discursos KBV",
+    "directories": {
+      "output": "dist-electron"
+    },
+    "files": [
+      "dist/**/*",
+      "electron-main.js",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "public/pwa-512x512.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}

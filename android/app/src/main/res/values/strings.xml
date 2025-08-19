@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Seguimiento Discursos KBV</string>
+    <string name="title_activity_main">Seguimiento Discursos KBV</string>
+    <string name="package_name">com.franciscopinto.seguimiento.discursos.kbv</string>
+    <string name="custom_url_scheme">com.franciscopinto.seguimiento.discursos.kbv</string>
+</resources>

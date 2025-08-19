@@ -1,0 +1,11 @@
+node_modules/
+dist/
+dist-electron/
+.env
+.env.local
+.env.production
+*.log
+android/app/build/
+android/.gradle/
+ios/
+node_modules
