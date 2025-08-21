@@ -3,6 +3,8 @@ import { useAppStore } from '../stores/appStore'
 import { useEffect, useState } from 'react'
 import DashboardCalendar from '../components/DashboardCalendar'
 import OradorModal from '../components/OradorModal'
+import QuickActions from '../components/QuickActions'
+import SmartAlerts from '../components/SmartAlerts'
 import { initialOradores, initialHotes } from '../data/initialData'
 
 function Dashboard() {
@@ -87,6 +89,11 @@ function Dashboard() {
 
   return (
     <div className="container dashboard fade-in">
+      {/* Quick Actions */}
+      <QuickActions />
+      
+      {/* Smart Alerts */}
+      <SmartAlerts />
 
       {/* Métriques principales */}
       <div className="metrics-grid" style={{
@@ -278,15 +285,7 @@ function Dashboard() {
         )}
       </div>
 
-      {/* Alertas Importantes */}
-      <div className="card">
-        <h3 style={{ marginBottom: '8px', color: 'var(--jw-blue)', fontSize: '14px' }}>
-          {t('alertasImportantes')}
-        </h3>
-        <div style={{ textAlign: 'center', color: '#666', padding: '10px', fontSize: '12px' }}>
-          {t('noAlerts')}
-        </div>
-      </div>
+
 
       {/* Calendário de Visitas */}
       <div className="card">

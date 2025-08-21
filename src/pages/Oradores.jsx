@@ -378,11 +378,56 @@ function Oradores() {
                       📞 {orador.phone}
                     </p>
                   )}
-                  {orador.nextVisitDate && (
-                    <p style={{ margin: '0 0 8px 0', color: 'var(--jw-blue)' }}>
-                      {t('proximaVisita')}: {new Date(orador.nextVisitDate).toLocaleDateString('pt-BR')}
-                    </p>
-                  )}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginTop: '8px' }}>
+                    {orador.lastVisitDate && (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <span style={{ color: '#666', fontSize: '14px' }}>📅 {t('ultimaVisita')}:</span>
+                        <span style={{ color: '#333', fontWeight: '500' }}>
+                          {new Date(orador.lastVisitDate).toLocaleDateString('fr-FR', {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric'
+                          })}
+                        </span>
+                        {orador.lastTalkNoOrType && (
+                          <span style={{ 
+                            background: '#e8f5e9', 
+                            color: '#2e7d32', 
+                            padding: '2px 6px', 
+                            borderRadius: '4px', 
+                            fontSize: '12px',
+                            fontWeight: '500'
+                          }}>
+                            {orador.lastTalkNoOrType}
+                          </span>
+                        )}
+                      </div>
+                    )}
+                    {orador.nextVisitDate && (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <span style={{ color: 'var(--color-primary)', fontWeight: '500', fontSize: '14px' }}>📅 {t('proximaVisita')}:</span>
+                        <span style={{ color: 'var(--color-primary)', fontWeight: '600' }}>
+                          {new Date(orador.nextVisitDate).toLocaleDateString('fr-FR', {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric'
+                          })}
+                        </span>
+                        {orador.nextTalkNoOrType && (
+                          <span style={{ 
+                            background: 'var(--color-primary-light)', 
+                            color: 'white', 
+                            padding: '2px 6px', 
+                            borderRadius: '4px', 
+                            fontSize: '12px',
+                            fontWeight: '500'
+                          }}>
+                            {orador.nextTalkNoOrType}
+                          </span>
+                        )}
+                      </div>
+                    )}
+                  </div>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '12px' }}>
                     <span style={{ 
                       background: orador.type === 'local' ? '#e8f5e8' : '#e3f2fd', 

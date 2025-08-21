@@ -219,8 +219,13 @@ function Calendario() {
             {monthDays.map((dayObj, index) => {
               const isToday = dayObj.date.toDateString() === new Date().toDateString()
               const dayEvents = eventos.filter(evento => {
-                const eventoDate = new Date(evento.date)
-                return eventoDate.toDateString() === dayObj.date.toDateString()
+                // Créer des dates en utilisant la date locale pour éviter les problèmes de fuseau horaire
+                const eventDate = new Date(evento.date)
+                
+                // Comparer les dates en utilisant les composants jour/mois/année
+                return eventDate.getDate() === dayObj.date.getDate() &&
+                       eventDate.getMonth() === dayObj.date.getMonth() &&
+                       eventDate.getFullYear() === dayObj.date.getFullYear()
               })
 
               return (
@@ -243,24 +248,39 @@ function Calendario() {
                     {dayObj.date.getDate()}
                   </div>
                   
-                  {dayEvents.map((evento, eventIndex) => (
-                    <div
-                      key={eventIndex}
-                      style={{
-                        fontSize: '10px',
-                        padding: '2px 4px',
-                        background: 'var(--jw-blue)',
-                        color: 'white',
-                        borderRadius: '4px',
-                        marginBottom: '2px',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        whiteSpace: 'nowrap'
-                      }}
-                    >
-                      {evento.orateurNom}
-                    </div>
-                  ))}
+                  {dayEvents.map((evento, eventIndex) => {
+                    // Trouver l'orateur correspondant
+                    const orador = oradores.find(o => 
+                      o.nom === evento.orateurNom || 
+                      o.nom?.toLowerCase() === evento.orateurNom?.toLowerCase()
+                    )
+                    
+                    return (
+                      <div
+                        key={eventIndex}
+                        style={{
+                          fontSize: '10px',
+                          padding: '4px',
+                          background: 'var(--jw-blue)',
+                          color: 'white',
+                          borderRadius: '4px',
+                          marginBottom: '4px',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          whiteSpace: 'nowrap',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '4px'
+                        }}
+                        title={`${evento.orateurNom}${evento.congregation ? ` (${evento.congregation})` : ''}`}
+                      >
+                        <span>👤</span>
+                        <span style={{ flex: 1 }}>
+                          {evento.orateurNom}
+                        </span>
+                      </div>
+                    )
+                  })}
                 </div>
               )
             })}

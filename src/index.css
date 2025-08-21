@@ -1,25 +1,22 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import './styles/global.css';
 
+/* Samsung specific optimizations */
 body {
-  font-family: 'Samsung One', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-family: 'Samsung One', var(--font-sans);
   line-height: 1.6;
-  color: var(--text-color);
-  background-color: var(--bg-color);
-  font-size: var(--font-size-base);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  font-size: var(--text-base);
   touch-action: manipulation;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  /* Compensation navigation Samsung S25 Ultra */
+  /* Compensation for Samsung navigation */
   padding-bottom: 40px;
-  /* Optimisations Samsung */
+  /* Samsung optimizations */
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  /* Smooth theme transitions */
+  transition: background-color var(--transition-normal) var(--transition-ease), 
+              color var(--transition-normal) var(--transition-ease);
 }
 
 /* Support pour écrans Samsung pliables */

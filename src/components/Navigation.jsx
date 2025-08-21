@@ -10,7 +10,8 @@ function Navigation() {
     { path: '/oradores', label: t('oradores'), icon: '👥' },
     { path: '/hotes', label: t('hotes'), icon: '🏠' },
     { path: '/comunicacao', label: 'WhatsApp', icon: '💬' },
-    { path: '/configuracoes', label: t('configuracoes'), icon: '⚙️' }
+    { path: '/configuracoes', label: t('configuracoes'), icon: '⚙️' },
+    { path: '/privacy', label: t('politiqueConfidentialite'), icon: '🔒' }
   ]
 
   return (

@@ -1,0 +1,269 @@
+/* Bottom Navigation */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 70px;
+  background-color: var(--bg-color, #ffffff);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  padding: 0 8px;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scroll-behavior: smooth;
+}
+
+.bottom-nav::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.bottom-nav .nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  color: var(--text-color, #334155);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  border-radius: 12px;
+  margin: 0 2px;
+  flex-shrink: 0;
+}
+
+.bottom-nav .nav-item:hover {
+  background-color: var(--hover-bg, rgba(0, 0, 0, 0.05));
+}
+
+.bottom-nav .nav-item.active {
+  color: var(--active-color, #2563eb);
+  font-weight: 600;
+}
+
+.bottom-nav .nav-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 32px;
+  margin-bottom: 4px;
+  transition: all 0.2s ease;
+}
+
+.bottom-nav .nav-item.active .nav-icon {
+  transform: translateY(-4px);
+}
+
+.nav-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--active-color, #2563eb);
+}
+
+/* Floating Action Button */
+.fab-container {
+  position: fixed;
+  right: 20px;
+  bottom: 90px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.fab-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.fab-backdrop.visible {
+  opacity: 1;
+}
+
+.fab-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 8px 0;
+  pointer-events: auto;
+}
+
+.fab-menu-item-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.fab-menu-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  background: var(--bg-color, #ffffff);
+  color: var(--text-color, #1e293b);
+  border: none;
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fab-menu-item:hover {
+  background-color: var(--item-hover, rgba(37, 99, 235, 0.1));
+  transform: translateX(-4px);
+}
+
+.fab-menu-item:active {
+  background-color: var(--item-active, rgba(37, 99, 235, 0.2));
+}
+
+.fab-menu-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background-color: var(--item-hover, rgba(37, 99, 235, 0.1));
+  flex-shrink: 0;
+}
+
+.fab-menu-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.shortcut {
+  font-size: 11px;
+  color: var(--text-color, #64748b);
+  opacity: 0.7;
+  background: var(--item-hover, rgba(37, 99, 235, 0.1));
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 4px;
+}
+
+.fab-main {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--primary-color, #2563eb);
+  color: white;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 1001;
+}
+
+.fab-main:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
+}
+
+.fab-main:active {
+  transform: scale(0.95);
+}
+
+.fab-main .fab-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+/* Dark mode specific styles */
+.dark .bottom-nav {
+  background-color: var(--bg-color, #1e293b);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.dark .fab-menu-item {
+  background-color: var(--bg-color, #1e293b);
+  color: var(--text-color, #e2e8f0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .bottom-nav {
+    height: 60px;
+  }
+  
+  .fab-container {
+    bottom: 80px;
+    right: 16px;
+  }
+  
+  .fab-main {
+    width: 52px;
+    height: 52px;
+    font-size: 22px;
+  }
+  
+  .fab-menu-item {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+}
+
+/* Animation keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
